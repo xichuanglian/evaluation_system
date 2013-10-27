@@ -48,6 +48,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'rails_l2factor'
 end
 
 # Use ActiveModel has_secure_password
