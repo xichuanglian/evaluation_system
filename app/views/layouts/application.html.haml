@@ -1,0 +1,25 @@
+!!! 5
+%html
+  %head
+    %title Evaluation System
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    %div#wrap
+      %div#header
+        %h1#logo-text Evaluation System
+        %h2#slogan Evaluation Form for Graduate Students
+      %div#menu
+        %ul
+          %li#current= link_to 'Home', '/'
+          %li.last= link_to 'About', '/'
+      %div#content-wrap
+        %div#sidebar
+          %div.left-box
+            %p
+              The sidebar is empty now
+        %div#main
+          = yield
+      %div#footer
