@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController::Base
+class StudentController < ApplicationController
   def form
   end
 end

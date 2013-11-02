@@ -3,6 +3,6 @@ class WelcomeController < ApplicationController
   end
 
   def login
-    redirect_to student_form
+    redirect_to student_form_path
   end
 end
