@@ -37,6 +37,9 @@ end
 # use Haml for templates
 gem 'haml'
 
+# for javascript
+gem 'therubyracer'
+
 group :development, :test do
   gem 'heroku'
   gem 'debugger'

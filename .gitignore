@@ -17,3 +17,6 @@
 
 # Ignore backup files
 *~
+
+# Ignore assets
+/public/assets
