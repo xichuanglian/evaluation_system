@@ -43,8 +43,8 @@ gem 'therubyracer'
 group :development, :test do
   gem 'heroku'
   gem 'debugger'
-  gem 'rspec'
-  gem 'cucumber'
+  gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
