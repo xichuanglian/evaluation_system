@@ -1,0 +1,16 @@
+%h1 All Users
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Job
+      %th ID Number
+      %th Email
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.job
+        %td= user.jobid
+        %td= user.email
