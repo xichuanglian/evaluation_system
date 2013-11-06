@@ -1,8 +1,8 @@
-= form_tag '/simple', :class => 'simple-form' do
+= form_tag '/student/submit', method: 'post' do
     = label_tag :Name
-    = text_field_tag :username
+    = text_field :student, :name
     = label_tag "Student ID"
-    = text_field_tag :student_id
+    = text_field :student, :jobid
     = label_tag "Phd or Master"
     = text_field_tag :student_type
     = label_tag "Which year?(1,2,3...)"
@@ -14,28 +14,28 @@
     = label_tag "Official Advisor (if different from thesis advisor)"
     = text_field_tag :official_advisor
     = label_tag "Preliminary Exam: (Which Area, Score, N/A)"
-    = text_field_tag :pre_exam
+    = text_field  :form, :preliminary_exam
 
     = label_tag "Oral Exam:"
     = label_tag "Pass"
-    = radio_button_tag :oral_exam, :value => 'Pass'
+    = radio_button :form, :oral_exam, 'Pass'
     = label_tag "Fail"
-    = radio_button_tag :oral_exam, :value => 'Fail'   
+    = radio_button :form, :oral_exam, 'Fail'   
     = label_tag "N/A"
-    = radio_button_tag :oral_exam, :value => 'N/A'
+    = radio_button :form, :oral_exam, 'N/A'
 
     = label_tag "Thesis Proposal:(Pass, Fail, N/A)"
     = label_tag "Pass"
-    = radio_button_tag :proposal, :value => 'Pass'
+    = radio_button_tag :proposal, :value => 'Passra'
     = label_tag "Fail"
     = radio_button_tag :proposal, :value => 'Fail'   
     = label_tag "N/A"
     = radio_button_tag :proposal, :value => 'N/A'
 
     = label_tag "Education (from high school):"
-    = text_field_tag :education
+    = text_area :form, :education
     = label_tag "Classes Taken So Far (List the course number, name, lecturer, time, credits and scores if known)"
-    = text_field_tag :classes
+    = text_area :form, :classes_taken
     = label_tag "Publications (Title, co-authors, conference/journal, year, poster /demo /short paper /mini-conf/ oral/ award/ invite to a journal)"
     = text_field_tag :publications
     = label_tag "Other Academic Activities (e.g., TA, Internships, Presentations, Conferences/Seminars/Talks you attend)"
@@ -44,27 +44,10 @@
     = text_field_tag :summary
     = label_tag "Plan for the Next Semester (or even longer)"
     = text_field_tag :plan
+
     = label_tag "Suggestions to your advisor, your research group and/or the graduate committee."
     = text_field_tag :suggestions
 
-    = label_tag :password
-    = password_field_tag :password
-    = label_tag :email
-    = email_field_tag :email
-    = label_tag :age
-    = number_field_tag :age
-    = label_tag :telephone
-    = telephone_field_tag :telephone
-    = label_tag :webpage
-    = url_field_tag :webpage
-    = label_tag :search
-    = search_field_tag :search
-    = label_tag :color
-    = select_tag :color, :options => ['green', 'orange', 'purple']
-    = select_tag :type, :grouped_options => { 'foo' => ['foo', 'bar'], 'bar' => ['foo', 'bar'] }
-    = select_tag :character, :grouped_options => [['Friends',['Yoda',['Obiwan',1]]],['Enemies',['Palpatine',['Darth Vader',3]]]]
-    = label_tag :gender
-    = radio_button_tag :gender, :value => 'male'
-    = radio_button_tag :gender, :value => 'female'
-    = check_box_tag :remember_me
-    = submit_tag
+
+    %p
+        = submit_tag :save

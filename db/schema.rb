@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102143811) do
+ActiveRecord::Schema.define(version: 20131106115517) do
+
+  create_table "evaluation_forms", force: true do |t|
+    t.string   "student_id"
+    t.string   "preliminary_exam"
+    t.string   "oral_exam"
+    t.string   "thesis_proposal"
+    t.text     "education"
+    t.text     "classes_taken"
+    t.text     "publications"
+    t.text     "academic_activities"
+    t.text     "researsh_progress"
+    t.text     "plan"
+    t.text     "suggestions"
+    t.text     "comments"
+    t.integer  "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string "name"
