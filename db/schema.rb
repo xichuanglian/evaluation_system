@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20131106115517) do
     t.text     "classes_taken"
     t.text     "publications"
     t.text     "academic_activities"
-    t.text     "researsh_progress"
+    t.text     "research_progress"
     t.text     "plan"
     t.text     "suggestions"
     t.text     "comments"

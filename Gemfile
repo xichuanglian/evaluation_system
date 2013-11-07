@@ -45,6 +45,7 @@ group :development, :test do
   gem 'debugger'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end

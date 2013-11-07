@@ -9,7 +9,7 @@ class CreateEvaluationForms < ActiveRecord::Migration
       t.text :classes_taken
       t.text :publications
       t.text :academic_activities
-      t.text :researsh_progress
+      t.text :research_progress
       t.text :plan
       t.text :suggestions
       t.text :comments

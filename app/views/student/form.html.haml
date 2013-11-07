@@ -13,33 +13,33 @@
         }
     }
 
-= form_tag '/student/submit', method: 'post' do
+= form_tag '/student/save', method: 'post' do
+    = label :student, :name
+    = text_field :student, :name
+
+    = label :student, :jobid, "Student ID"
+    = text_field :student, :jobid
+
+    = label_tag "Phd or Master"
+    = text_field_tag :student_type
+
+    = label_tag "Which year?(1,2,3...)"
+    = number_field_tag :year
+
+    = label_tag "Thesis Advisor (The faculty member you are actually working with)"
+    = text_field_tag :advisor
+
+    = label_tag "Co-advisor (if any)"
+    = text_field_tag :co_advisor
+
+    = label_tag "Official Advisor (if different from thesis advisor)"
+    = text_field_tag :official_advisor
+
+    = label_tag "Preliminary Exam: (Which Area, Score, N/A)"
+    = text_field :form, :preliminary_exam
+
     %table
         %tbody
-            %tr
-                = label_tag :Name
-                = text_field :student, :name
-            %tr
-                = label_tag "Student ID"
-                = text_field :student, :jobid
-            %tr
-                = label_tag "Phd or Master"
-                = text_:student_typefield :student, :student_type
-            %tr
-                = label_tag "Which year?(1,2,3...)"
-                = number_field :year
-            %tr
-                = label_tag "Thesis Advisor (The faculty member you are actually working with)"
-                = text_field :advisor
-            %tr
-                = label_tag "Co-advisor (if any)"
-                = text_field :co_advisor
-            %tr
-                = label_tag "Official Advisor (if different from thesis advisor)"
-                = text_field :official_advisor
-            %tr
-                = label_tag "Preliminary Exam: (Which Area, Score, N/A)"
-                = text_field  :form, :preliminary_exam
             %tr
                 %td
                     = label_tag "Oral Exam:"
@@ -49,46 +49,46 @@
                 %td
                     = label_tag "Fail"
                     = radio_button :form, :oral_exam, 'Fail'
-                %td   
+                %td
                     = label_tag "N/A"
                     = radio_button :form, :oral_exam, 'N/A'
             %tr
                 %td
                     = label_tag "Thesis Proposal:(Pass, Fail, N/A)"
-                %td    
+                %td
                     = label_tag "Pass"
-                    = radio_button :proposal, :value => 'Passra'
+                    = radio_button :form, :thesis_proposal, 'Pass'
                 %td
                     = label_tag "Fail"
-                    = radio_button :proposal, :value => 'Fail'
+                    = radio_button :form, :thesis_proposal, 'Fail'
                 %td
                     = label_tag "N/A"
-                    = radio_button :proposal, :value => 'N/A'
-            %tr
-                = label_tag "Education (from high school):"
-                = text_area :form, :education
-            %tr
-                = label_tag "Classes Taken So Far (List the course number, name, lecturer, time, credits and scores if known)"
-                = text_area :form, :classes_taken
-            %tr
-                = label_tag "Publication-s (Title, co-authors, conference/journal, year, poster /demo /short paper /mini-conf/ oral/ award/ invite to a journal)"
-                = text_field :publications
-            %tr
-                = label_tag "Other Academic Activities (e.g., TA, Internships, Presentations, Conferences/Seminars/Talks you attend)"
-                = text_field :others
-            %tr
-                = label_tag "Detailed Summary of your research progress in this semester (including what is learnt from the courses, what books/papers you read and what you learnt, concise descriptions of your finished or ongoing research projects. Be clear.)"
-                = text_field :summary
-            %tr
-                = label_tag "Plan for th--e Next Semester (or even longer)"
-                = text_field :plan
-            %tr
-                = label_tag "Suggestions to your advisor, your research group and/or the graduate committee."
-                = text_field :suggestions
-    %p
-        = submit_tag :save
+                    = radio_button :form, :thesis_proposal, 'N/A'
 
-    
+    = label :form, :education, "Education (from high school) :"
+    = text_area :form, :education
+
+    = label_tag "Classes Taken So Far (List the course number, name, lecturer, time, credits and scores if known)"
+    = text_area :form, :classes_taken
+
+    = label_tag "Publications (Title, co-authors, conference/journal, year, poster /demo /short paper /mini-conf/ oral/ award/ invite to a journal)"
+    = text_area :form, :publications
+
+    = label_tag "Other Academic Activities (e.g., TA, Internships, Presentations, Conferences/Seminars/Talks you attend)"
+    = text_area :form, :academic_activities
+
+    = label_tag "Detailed Summary of your research progress in this semester (including what is learnt from the courses, what books/papers you read and what you learnt, concise descriptions of your finished or ongoing research projects. Be clear.)"
+    = text_area :form, :research_progress
+
+    = label_tag "Plan for the Next Semester (or even longer)"
+    = text_area :form, :plan
+
+    = label_tag "Suggestions to your advisor, your research group and/or the graduate committee."
+    = text_area :form, :suggestions
+    %p
+        = submit_tag "Save"
+
+
 %p
     = @final
     = link_to 'Final Submit', '', :onclick => 'final_submit()'
