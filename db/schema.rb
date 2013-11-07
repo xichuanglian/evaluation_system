@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20131106115517) do
     t.text     "plan"
     t.text     "suggestions"
     t.text     "comments"
+    t.boolean  "form_submitted"
+    t.boolean  "comment_submitted"
     t.integer  "grade"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -13,7 +13,10 @@
         %h2#slogan Evaluation Form for Graduate Students
       %div#menu
         %ul
-          %li#current= link_to 'Home', '/'
+          - if session[:user]
+            %li= link_to 'Log Out', '/logout'
+          - else
+            %li= link_to 'Log In', '/'
           %li.last= link_to 'About', '/'
       %div#content-wrap
         %div#sidebar

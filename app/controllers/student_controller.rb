@@ -1,13 +1,25 @@
 class StudentController < ApplicationController
   def form
+    if session[:user] == nil
+      redirect_to root_path and return
+    end
     @student = session[:user]
+    @form = EvaluationForm.find_by student_id: @student.jobid
+    if @form
+      @final = @form.form_submitted
+    end
   end
 
-  def submit
+  def save
     form_hash = params[:form]
-    form_hash[:student_id] = params[:student][:jobid]
-    form = EvaluationForm.create(permit_params form_hash)
-    redirect_to root_path
+    form = EvaluationForm.find_by student_id: params[:student][:jobid]
+    if form
+      form.update permit_params form_hash
+    else
+      form_hash[:student_id] = params[:student][:jobid]
+      EvaluationForm.create(permit_params form_hash)
+    end
+    redirect_to student_form_path
   end
 
   private
@@ -26,7 +38,8 @@ class StudentController < ApplicationController
       :plan,
       :suggestions,
       :comments,
-      :grade
+      :grade,
+      :form_submitted
     )
   end
 end

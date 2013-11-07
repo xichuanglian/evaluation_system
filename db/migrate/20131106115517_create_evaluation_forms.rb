@@ -13,6 +13,8 @@ class CreateEvaluationForms < ActiveRecord::Migration
       t.text :plan
       t.text :suggestions
       t.text :comments
+      t.boolean :form_submitted
+      t.boolean :comment_submitted
       t.integer :grade
       t.timestamps
     end

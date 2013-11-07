@@ -39,7 +39,7 @@ EvaluationSystem::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
@@ -56,7 +56,8 @@ EvaluationSystem::Application.routes.draw do
 
   root 'welcome#index'
   post '/login' => 'welcome#login'
+  get  '/logout' => 'welcome#logout'
   get  '/student/form' => 'student#form', as: :student_form
-  post '/student/submit' => 'student#submit', as: :student_submit
+  post '/student/save' => 'student#save', as: :student_save
   get  '/admin/showall' => 'admin#showall'
 end
