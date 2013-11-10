@@ -1,0 +1,3 @@
+login_url : "http://fake-tsinghua-id.herokuapp.com/login/form/7e0dfab786ebf509f95155ba5357e29c/0/new_login"
+appid : "test_app"
+ticket_url : "http://fake-tsinghua-id.herokuapp.com/checkticket/test_app/"

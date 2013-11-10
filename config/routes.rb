@@ -56,6 +56,7 @@ EvaluationSystem::Application.routes.draw do
 
   root  'welcome#index'
   post  '/login' => 'welcome#login'
+  get   '/new_login' => 'welcome#new_login'
   get   '/logout' => 'welcome#logout'
   get   '/student/form' => 'student#form', as: :student_form
   post  '/student/save' => 'student#save', as: :student_save

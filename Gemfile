@@ -40,6 +40,8 @@ gem 'haml'
 # for javascript
 gem 'therubyracer'
 
+gem 'rails_config'
+
 group :development, :test do
   gem 'debugger'
   gem 'rspec-rails'

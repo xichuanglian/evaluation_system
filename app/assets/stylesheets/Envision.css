@@ -67,6 +67,11 @@ h1, h2, h3, p {
 	padding: 10px;
 	margin: 0;
 }
+
+p.notice {
+	color: #f00;
+}
+
 ul, ol {
 	margin: 5px 20px;
 	padding: 0 20px;
