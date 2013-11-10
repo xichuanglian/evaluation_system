@@ -54,10 +54,11 @@ EvaluationSystem::Application.routes.draw do
   #     resources :products
   #   end
 
-  root 'welcome#index'
-  post '/login' => 'welcome#login'
-  get  '/logout' => 'welcome#logout'
-  get  '/student/form' => 'student#form', as: :student_form
-  post '/student/save' => 'student#save', as: :student_save
-  get  '/admin/showall' => 'admin#showall'
+  root  'welcome#index'
+  post  '/login' => 'welcome#login'
+  get   '/logout' => 'welcome#logout'
+  get   '/student/form' => 'student#form', as: :student_form
+  post  '/student/save' => 'student#save', as: :student_save
+  get   '/admin/showall' => 'admin#showall'
+  get '/form/:id' => 'evaluation_forms#show', as: :form
 end

@@ -48,6 +48,7 @@ group :development, :test do
   gem 'database_cleaner'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'simplecov', :require => false
 end
 
 group :production do

@@ -13,7 +13,7 @@
         }
     }
 
-= form_tag '/student/save', method: 'post' do
+= form_tag '/student/save', method: 'post', id: 'evaluation_form' do
     = label :student, :name
     = text_field :student, :name
 

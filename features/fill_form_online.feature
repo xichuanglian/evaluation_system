@@ -22,4 +22,5 @@ Scenario: Save the filled form
 	When I am on student form page
 	And I filled text field "Education" with "My Education"
 	And I press button "Save"
-	Then I should see "My Education" in text field "Education"
+	Then I should be on student form page
+	And I should see "My Education" in text field "Education"

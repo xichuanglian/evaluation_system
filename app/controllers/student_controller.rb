@@ -5,14 +5,17 @@ class StudentController < ApplicationController
     end
     @student = session[:user]
     @form = EvaluationForm.find_by student_id: @student.jobid
-    if @form
-      @final = @form.form_submitted
+    if @form && @form.form_submitted == true
+      redirect_to form_path(@form) and return
     end
   end
 
   def save
     form_hash = params[:form]
     form = EvaluationForm.find_by student_id: params[:student][:jobid]
+    if params[:form][:form_submitted]
+      form_hash[:form_submitted] = true
+    end
     if form
       form.update permit_params form_hash
     else

@@ -1,0 +1,18 @@
+%table
+  %tbody
+    %tr
+      %td{width: 100}
+        Student ID
+      %td
+        #{@form.student_id}
+    %tr
+      %td
+        Student Name
+      %td
+        #{@student.name}
+    - EvaluationForm.visible_fields.each do |field|
+      %tr
+        %td
+          = field_name(field)
+        %td
+          #{@form.send(field)}
