@@ -1,0 +1,32 @@
+%h1 Edit User Information
+
+= form_tag admin_edit_path(@user), :method => :post do
+
+	= label :user, :name, 'Name'
+	= text_field :user, 'name'
+
+	= label :user, :job, 'Job'
+	= text_field :user, 'job'
+
+	= label :user, :jobid, 'Student ID'
+	= text_field :user, 'jobid'
+
+	= label :user, :email, 'Email'
+	= text_field :user, 'email'
+
+	= label :user, :student_type, 'PhD/Master'
+	= text_field :user, 'student_type'
+
+	= label :user, :enroll_year, 'Year enrolled'
+	= text_field :user, 'enroll_year'
+
+	= label :user, :advisor, 'Advisor'
+	= text_field :user, 'advisor'
+
+	= label :user, :co_advisor, 'Co-advisor'
+	= text_field :user, 'co_advisor'
+
+	= label :user, :official_advisor, 'Official advisor'
+	= text_field :user, 'official_advisor'
+
+	= submit_tag 'Save'

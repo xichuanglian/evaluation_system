@@ -5,8 +5,14 @@
     %tr
       %th Name
       %th Job
-      %th ID Number
+      %th Student ID
       %th Email
+      %th PhD/Master
+      %th Year enrolled
+      %th Advisor
+      %th Co-advisor
+      %th Official advisor
+      %th
   %tbody
     - @users.each do |user|
       %tr
@@ -14,3 +20,11 @@
         %td= user.job
         %td= user.jobid
         %td= user.email
+        %td= user.student_type
+        %td= user.enroll_year
+        %td= user.advisor
+        %td= user.co_advisor
+        %td= user.official_advisor
+        %td= link_to 'Edit', admin_edit_path(user)
+
+= link_to 'Add new user', admin_addnew_path

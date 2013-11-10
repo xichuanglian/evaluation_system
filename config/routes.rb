@@ -59,6 +59,10 @@ EvaluationSystem::Application.routes.draw do
   get   '/logout' => 'welcome#logout'
   get   '/student/form' => 'student#form', as: :student_form
   post  '/student/save' => 'student#save', as: :student_save
-  get   '/admin/showall' => 'admin#showall'
+  get   '/admin/showall' => 'admin#showall', as: :admin_showall
+  get   '/admin/new' => 'admin#new', as: :admin_addnew
+  post  '/admin/new' => 'admin#create'
+  get   '/admin/edit/:id' => 'admin#edit', as: :admin_edit
+  post  '/admin/edit/:id' => 'admin#update'
   get   '/form/:id' => 'evaluation_forms#show', as: :form
 end
