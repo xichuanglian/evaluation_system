@@ -41,7 +41,6 @@ gem 'haml'
 gem 'therubyracer'
 
 group :development, :test do
-  gem 'heroku'
   gem 'debugger'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false

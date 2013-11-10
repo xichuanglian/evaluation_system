@@ -6,12 +6,12 @@ class StudentController < ApplicationController
     end
     @student = session[:user]
     @form = EvaluationForm.find_by student_id: @student.jobid
-    #if @form && (@form.form_submitted == true || @form.form_submitted == "t")
-    #  redirect_to form_path(@form) and return
-    #end
+    if @form && (@form.form_submitted == true || @form.form_submitted == "t")
+      redirect_to form_path(@form) and return
+    end
     @check_form = Hash.new("")
     if session[:missing]
-      session[:missing].each do |x| 
+      session[:missing].each do |x|
       #flash[:missing]#
         @check_form[x] = "error"
       end
@@ -41,7 +41,13 @@ class StudentController < ApplicationController
 
   private
   def check(h)
-    EvaluationForm.required_fields - h.keys
+    keys = []
+    h.keys.each do |key|
+      if h[key.to_sym] && h[key.to_sym].to_s.size > 0
+        keys.push key.to_sym
+      end
+    end
+    EvaluationForm.required_fields - keys
   end
 
   def permit_params(form_params)
@@ -54,7 +60,7 @@ class StudentController < ApplicationController
       :classes_taken,
       :publications,
       :academic_activities,
-      :researsh_progress,
+      :research_progress,
       :plan,
       :suggestions,
       :comments,
