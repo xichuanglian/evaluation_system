@@ -1,4 +1,3 @@
-require 'ruby-debug'
 class StudentController < ApplicationController
   def form
     if session[:user] == nil
