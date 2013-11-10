@@ -21,19 +21,19 @@
     = text_field :student, :jobid
 
     = label_tag "Phd or Master"
-    = text_field_tag :student_type
+    = text_field_tag :student, :student_type
 
     = label_tag "Which year?(1,2,3...)"
-    = number_field_tag :year
+    = number_field_tag :student, :enroll_year //TODO
 
     = label_tag "Thesis Advisor (The faculty member you are actually working with)"
-    = text_field_tag :advisor
+    = text_field_tag :student, :advisor
 
     = label_tag "Co-advisor (if any)"
-    = text_field_tag :co_advisor
+    = text_field_tag :student, :co_advisor
 
     = label_tag "Official Advisor (if different from thesis advisor)"
-    = text_field_tag :official_advisor
+    = text_field_tag :student, :official_advisor
 
     = label_tag "Preliminary Exam: (Which Area, Score, N/A)"
     = text_field :form, :preliminary_exam

@@ -4,8 +4,6 @@ class AdminController < ApplicationController
 
   def showall
     @users = User.all
-    puts "=================="
-    puts @users
-    puts "=================="
   end
+
 end
