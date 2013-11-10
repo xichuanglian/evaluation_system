@@ -28,7 +28,7 @@ class WelcomeController < ApplicationController
     ticket = params[:ticket]
     ip = request.remote_ip.gsub(/[.]/, '_')
     response = Net::HTTP.get(URI.parse(Settings.ticket_url + "#{ticket}/#{ip}"))
-    if response == "" || /code=1/.match response
+    if response == "" || /code=1/.match(response)
       flash[:notice] = "Login Failed"
       redirect_to root_path and return
     else
