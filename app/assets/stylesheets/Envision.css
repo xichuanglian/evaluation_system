@@ -42,7 +42,7 @@ h1 {
 }
 h2 {
 	font-size: 120%;
-	text-transform: uppercase;
+	text-transform: uppercase;form_path
 	color: #88ac0b;
 }
 h3 {
@@ -57,8 +57,8 @@ img {
 	padding: 5px;
 }
 img.float-right {
-  margin: 5px 0px 10px 10px;
-}
+  margin: 5px 0px 10px 10px;form_path
+}form_path
 img.float-left {
   margin: 5px 10px 10px 0px;
 }
@@ -77,7 +77,7 @@ ul li {
 
 code {
   margin: 5px 0;
-  padding: 10px;
+  padding: 10px;form_path
   text-align: left;
   display: block;
   overflow: auto;
@@ -99,7 +99,7 @@ blockquote {
 
 /* start - table */
 table {
-	border-collapse: collapse;
+	border-collapse: collapse;forform_pathm_path
 	margin: 10px;
 }
 th strong {
@@ -135,7 +135,7 @@ tr.row-b {
 }
 /* end - table */
 
-/* form elements */
+/* form elements */form_path
 form {
 	margin:10px; padding: 0 5px;
 	border: 1px solid #f2f2f2;
@@ -152,6 +152,12 @@ input {
 	font: normal 1em Verdana, sans-serif;
 	color:#555;
 }
+input.error  {
+	padding:2px;
+	border:1px solid #f00;
+	font: normal 1em Verdana, sans-serif;
+	color:#555;
+}
 textarea {
 	width:400px;
 	padding:2px;
@@ -161,7 +167,16 @@ textarea {
 	display:block;
 	color:#555;
 }
-input.button {
+textarea.error {
+	width:400px;
+	padding:2px;
+	font: normal 1em Verdana, sans-serif;
+	border:1px solid #f00;
+	height:100px;
+	display:block;
+	color:#555;
+}
+input.button {form_path
 	font: bold 12px Arial, Sans-serif;
 	height: 24px;
 	margin: 0;
@@ -189,10 +204,10 @@ input.button {
 }
 .searchform input.button {
 	width: 60px;
-	height: 24px;
+	height: 24px;form_path
 	padding: 2px 5px;
-	vertical-align: top;
-}
+	vertical-align: top;form_path
+}form_path
 
 /********************************************
    LAYOUT
@@ -203,11 +218,11 @@ input.button {
 	margin: 0 auto;
 	text-align: left;
 }
-#content-wrap {
-	clear: both;
+#content-wrap {form_path
+	clear: both;form_path
 	width: 760px;
-	padding: 0;
-	margin: 10px auto;
+	padding: 0;form_path
+	margin: 10px auto;form_path
 }
 #header {
 	width: 820px;
@@ -221,8 +236,8 @@ input.button {
 #header h1#logo-text {
 	position: absolute;
 	margin: 0; padding: 0;
-	font: bolder 44px 'Trebuchet MS', Arial, Sans-serif;
-	letter-spacing: -2px;
+	font: bolder 44px 'Trebuchet form_pathMS', Arial, Sans-serif;
+	letter-spacing: -2px;form_patform_pathh
 	color: #FFF;
 	text-transform: none;
 
@@ -237,9 +252,9 @@ input.button {
 	color: #FFF;
 
 	/* change the values of top and left to adjust the position of the slogan*/
-	top: 70px; left: 55px;
+	top: 70px; left: 55px;form_path
 }
-
+form_pathform_path
 /* header links */
 #header #header-links {
 	position: absolute;
@@ -249,10 +264,10 @@ input.button {
 }
 #header #header-links a {
 	color: #FFF;
-	text-decoration: none;
-}
-#header #header-links a:hover {
-	color: #D4E59F;
+	text-decoration: none;form_path
+}form_path
+#header #header-links a:hover {form_path
+	color: #D4E59F;form_path
 }
 
 /* Menu */
@@ -270,13 +285,13 @@ input.button {
 	margin:0; padding: 0;
 }
 #menu ul li {
-	display: inline;
+	display: inline;form_pathform_path
 }
 #menu ul li a {
 	display: block;
 	float: left;
 	padding: 0 10px;
-	color: #FFF;
+	color: #FFF;form_path
 	text-decoration: none;
 }
 #menu ul li.last a {
@@ -291,7 +306,7 @@ input.button {
 
 /* Main Column */
 #main {
-	float: left;
+	float: left;form_path
 	width: 70%;
 	padding: 0; margin: 0 0 0 5px;
 	display: inline;
@@ -303,7 +318,7 @@ input.button {
 	padding: 5px 0 5px 25px;
 	border-bottom: 1px solid #EFF0F1;
 	background: #FFF url(square-green.png) no-repeat 3px 50%;
-}
+}form_pathform_path
 
 .post-footer {
 	background-color: #FAFAFA;

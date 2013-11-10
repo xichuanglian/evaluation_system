@@ -13,4 +13,16 @@ class EvaluationForm < ActiveRecord::Base
      :comments,
      :grade]
   end
+  def self.required_fields
+    [:preliminary_exam,
+     :oral_exam,
+     :thesis_proposal,
+     :education,
+     :classes_taken,
+     :publications,
+     :academic_activities,
+     :research_progress,
+     :plan,
+     :suggestions]
+  end
 end

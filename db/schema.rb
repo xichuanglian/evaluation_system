@@ -38,6 +38,11 @@ ActiveRecord::Schema.define(version: 20131106115517) do
     t.string "job"
     t.string "jobid"
     t.string "email"
+    t.string "student_type"
+    t.string "enroll_year"
+    t.string "advisor"
+    t.string "co_advisor"
+    t.string "official_advisor"
   end
 
 end

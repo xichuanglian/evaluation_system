@@ -21,19 +21,19 @@
     = text_field :student, :jobid
 
     = label_tag "Phd or Master"
-    = text_field_tag :student, :student_type
+    = text_field :student, :student_type
 
     = label_tag "Which year?(1,2,3...)"
-    = number_field_tag :student, :enroll_year //TODO
+    = number_field :student, :enroll_year #//TODO#
 
     = label_tag "Thesis Advisor (The faculty member you are actually working with)"
-    = text_field_tag :student, :advisor
+    = text_field :student, :advisor
 
     = label_tag "Co-advisor (if any)"
-    = text_field_tag :student, :co_advisor
+    = text_field :student, :co_advisor
 
     = label_tag "Official Advisor (if different from thesis advisor)"
-    = text_field_tag :student, :official_advisor
+    = text_field :student, :official_advisor
 
     = label_tag "Preliminary Exam: (Which Area, Score, N/A)"
     = text_field :form, :preliminary_exam, :class => @check_form[:preliminary_exam]
@@ -66,29 +66,28 @@
                     = radio_button :form, :thesis_proposal, 'N/A'
 
     = label :form, :education, "Education (from high school) :"
-    = text_area :form, :education
+    = text_area :form, :education, :class => @check_form[:education]
 
     = label_tag "Classes Taken So Far (List the course number, name, lecturer, time, credits and scores if known)"
-    = text_area :form, :classes_taken
+    = text_area :form, :classes_taken, :class => @check_form[:classes_taken]
 
     = label_tag "Publications (Title, co-authors, conference/journal, year, poster /demo /short paper /mini-conf/ oral/ award/ invite to a journal)"
-    = text_area :form, :publications
+    = text_area :form, :publications, :class => @check_form[:publications]
 
     = label_tag "Other Academic Activities (e.g., TA, Internships, Presentations, Conferences/Seminars/Talks you attend)"
-    = text_area :form, :academic_activities
+    = text_area :form, :academic_activities, :class => @check_form[:academic_activities]
 
     = label_tag "Detailed Summary of your research progress in this semester (including what is learnt from the courses, what books/papers you read and what you learnt, concise descriptions of your finished or ongoing research projects. Be clear.)"
-    = text_area :form, :research_progress
+    = text_area :form, :research_progress, :class => @check_form[:research_progress]
 
     = label_tag "Plan for the Next Semester (or even longer)"
-    = text_area :form, :plan
+    = text_area :form, :plan, :class => @check_form[:plan]
 
     = label_tag "Suggestions to your advisor, your research group and/or the graduate committee."
-    = text_area :form, :suggestions
+    = text_area :form, :suggestions, :class => @check_form[:suggestions]
     %p
         = submit_tag "Save"
 
 
 %p
-    = @final
     = link_to 'Final Submit', '', :onclick => 'final_submit()'

@@ -1,3 +1,4 @@
+require 'ruby-debug'
 class StudentController < ApplicationController
   def form
     if session[:user] == nil
@@ -5,16 +6,29 @@ class StudentController < ApplicationController
     end
     @student = session[:user]
     @form = EvaluationForm.find_by student_id: @student.jobid
-    if @form && (@form.form_submitted == true || @form.form_submitted == "t")
-      redirect_to form_path(@form) and return
+    #if @form && (@form.form_submitted == true || @form.form_submitted == "t")
+    #  redirect_to form_path(@form) and return
+    #end
+    @check_form = Hash.new("")
+    if session[:missing]
+      session[:missing].each do |x| 
+      #flash[:missing]#
+        @check_form[x] = "error"
+      end
     end
+    session[:missing] = nil
   end
 
   def save
     form_hash = params[:form]
     form = EvaluationForm.find_by student_id: params[:student][:jobid]
     if params[:form][:form_submitted]
-      form_hash[:form_submitted] = true
+      missing = check(form_hash)
+      if missing.size == 0
+        form_hash[:form_submitted] = true
+      else
+        session[:missing] = missing
+      end
     end
     if form
       form.update permit_params form_hash
@@ -26,6 +40,9 @@ class StudentController < ApplicationController
   end
 
   private
+  def check(h)
+    EvaluationForm.required_fields - h.keys
+  end
 
   def permit_params(form_params)
     form_params.permit(
