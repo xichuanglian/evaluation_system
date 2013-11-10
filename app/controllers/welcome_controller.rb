@@ -33,7 +33,7 @@ class WelcomeController < ApplicationController
       redirect_to root_path and return
     else
       jobid = /zjh=(\d+)/.match(response)[1]
-      session[:user] =
+      session[:user] = User.find_by(jobid: jobid)
       redire_to user_index(user) and return
     end
   end
