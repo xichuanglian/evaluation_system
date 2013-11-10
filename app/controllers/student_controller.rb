@@ -5,7 +5,7 @@ class StudentController < ApplicationController
     end
     @student = session[:user]
     @form = EvaluationForm.find_by student_id: @student.jobid
-    if @form && @form.form_submitted == true
+    if @form && (@form.form_submitted == true || @form.form_submitted == "t")
       redirect_to form_path(@form) and return
     end
   end

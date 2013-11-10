@@ -60,5 +60,5 @@ EvaluationSystem::Application.routes.draw do
   get   '/student/form' => 'student#form', as: :student_form
   post  '/student/save' => 'student#save', as: :student_save
   get   '/admin/showall' => 'admin#showall'
-  get '/form/:id' => 'evaluation_forms#show', as: :form
+  get   '/form/:id' => 'evaluation_forms#show', as: :form
 end
