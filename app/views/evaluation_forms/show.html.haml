@@ -15,4 +15,6 @@
         %td
           = field_name(field)
         %td
-          #{@form.send(field)}
+          - split_lines(@form.send(field)) do |line|
+            = line
+            %br
