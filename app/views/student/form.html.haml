@@ -36,7 +36,7 @@
     = text_field_tag :official_advisor
 
     = label_tag "Preliminary Exam: (Which Area, Score, N/A)"
-    = text_field :form, :preliminary_exam
+    = text_field :form, :preliminary_exam, :class => @check_form[:preliminary_exam]
 
     %table
         %tbody
