@@ -27,14 +27,16 @@ class WelcomeController < ApplicationController
   def new_login
     ticket = params[:ticket]
     ip = request.remote_ip.gsub(/[.]/, '_')
+    ip = "101_6_99_54"
     response = Net::HTTP.get(URI.parse(Settings.ticket_url + "#{ticket}/#{ip}"))
     if response == "" || /code=1/.match(response)
       flash[:notice] = "Login Failed"
       redirect_to root_path and return
     else
       jobid = /zjh=(\d+)/.match(response)[1]
-      session[:user] = User.find_by(jobid: jobid)
-      redire_to user_index(user) and return
+      user = User.find_by(jobid: jobid)
+      session[:user] = user
+      redirect_to user_index(user) and return
     end
   end
 
