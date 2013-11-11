@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   def new
-    
+
   end
 
   def create
@@ -11,6 +11,7 @@ class AdminController < ApplicationController
 
   def showall
     @users = User.all
+    render layout: 'one_column'
   end
 
   def edit
@@ -27,7 +28,7 @@ class AdminController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :job, :jobid, :email, :student_type, 
+    params.require(:user).permit(:name, :job, :jobid, :email, :student_type,
       :enroll_year, :advisor, :co_advisor, :official_advisor)
   end
 end
