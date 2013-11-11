@@ -1,4 +1,6 @@
 class StudentController < ApplicationController
+  layout "application" 
+  
   def form
     if session[:user] == nil
       redirect_to root_path and return
@@ -27,6 +29,7 @@ class StudentController < ApplicationController
         form_hash[:form_submitted] = true
       else
         session[:missing] = missing
+        form_hash[:form_submitted] = false
       end
     end
     if form

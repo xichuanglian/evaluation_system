@@ -2,6 +2,8 @@ require "uri"
 require "net/http"
 
 class WelcomeController < ApplicationController
+  layout "application" 
+
   def index
     if session[:user]
       redirect_to user_index(session[:user]) and return
@@ -20,14 +22,13 @@ class WelcomeController < ApplicationController
   end
 
   def logout
-    session[:user] = nil
+    session.clear
     redirect_to root_path
   end
 
   def new_login
     ticket = params[:ticket]
     ip = request.remote_ip.gsub(/[.]/, '_')
-    ip = "101_6_99_54"
     response = Net::HTTP.get(URI.parse(Settings.ticket_url + "#{ticket}/#{ip}"))
     if response == "" || /code=1/.match(response)
       flash[:notice] = "Login Failed"
