@@ -1,6 +1,6 @@
 %h1 Edit User Information
 
-= form_tag admin_edit_path(@user), :method => :post do
+= form_tag admin_update_path(@user), :method => :post do
 
 	= label :user, :name, 'Name'
 	= text_field :user, 'name'

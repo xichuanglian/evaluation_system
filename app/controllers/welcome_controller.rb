@@ -7,6 +7,8 @@ class WelcomeController < ApplicationController
   def index
     if session[:user]
       redirect_to user_index(session[:user]) and return
+    else
+      render 'index'
     end
   end
 

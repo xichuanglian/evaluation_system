@@ -13,7 +13,6 @@ class AdminController < ApplicationController
 
   def showall
     @users = User.all
-    render layout: 'one_column'
   end
 
   def edit

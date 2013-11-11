@@ -54,7 +54,7 @@ EvaluationSystem::Application.routes.draw do
   #     resources :products
   #   end
 
-  root  'welcome#index'
+  get   '/' => 'welcome#index', as: :root
   post  '/login' => 'welcome#login'
   get   '/new_login' => 'welcome#new_login'
   get   '/logout' => 'welcome#logout'
@@ -62,8 +62,8 @@ EvaluationSystem::Application.routes.draw do
   post  '/student/save' => 'student#save', as: :student_save
   get   '/admin/showall' => 'admin#showall', as: :admin_showall
   get   '/admin/new' => 'admin#new', as: :admin_addnew
-  post  '/admin/new' => 'admin#create'
+  post  '/admin/create' => 'admin#create', as: :admin_create
   get   '/admin/edit/:id' => 'admin#edit', as: :admin_edit
-  post  '/admin/edit/:id' => 'admin#update'
+  post  '/admin/update/:id' => 'admin#update', as: :admin_update
   get   '/form/:id' => 'evaluation_forms#show', as: :form
 end
