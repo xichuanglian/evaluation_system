@@ -1,5 +1,6 @@
 require "uri"
 require "net/http"
+require "ruby-debug"
 
 class WelcomeController < ApplicationController
   layout "application" 
@@ -31,6 +32,9 @@ class WelcomeController < ApplicationController
   def new_login
     ticket = params[:ticket]
     ip = request.remote_ip.gsub(/[.]/, '_')
+    if Settings.ip
+        ip = Settings.ip
+    end
     response = Net::HTTP.get(URI.parse(Settings.ticket_url + "#{ticket}/#{ip}"))
     if response == "" || /code=1/.match(response)
       flash[:notice] = "Login Failed"
