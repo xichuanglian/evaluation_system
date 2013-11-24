@@ -1,38 +1,38 @@
 %h1 Edit User Information
 
-= form_tag admin_update_path(@user), :method => :post do
+= form_tag admin_update_path(@userid), :method => :post do
 
-	= label :user, :name, 'Name'
-	= text_field :user, 'name'
+  = label :user, :name, 'Name'
+  = text_field :user, 'name'
 
-	%tabel
-		%tbody
-			%tr
-				%td= label :user, :job, 'Job'
-				%td= radio_button :user, :job, 'Student'
-				%td= label_tag 'Student'
-				%td= radio_button :user, :job, 'Teacher'
-				%td= label_tag 'Teacher'
+  %tabel
+    %tbody
+      %tr
+        %td= label :user, :job, 'Job'
+        %td= radio_button :user, :job, 'Student'
+        %td= label_tag 'Student'
+        %td= radio_button :user, :job, 'Teacher'
+        %td= label_tag 'Teacher'
 
-	= label :user, :jobid, 'Student ID'
-	= text_field :user, 'jobid'
+  = label :user, :jobid, 'Student ID'
+  = text_field :user, 'jobid'
 
-	= label :user, :email, 'Email'
-	= text_field :user, 'email'
+  = label :user, :email, 'Email'
+  = text_field :user, 'email'
 
-	= label :user, :student_type, 'PhD/Master'
-	= text_field :user, 'student_type'
+  = label :user, :student_type, 'PhD/Master'
+  = text_field :user, 'student_type'
 
-	= label :user, :enroll_year, 'Year enrolled'
-	= text_field :user, 'enroll_year'
+  = label :user, :enroll_year, 'Year enrolled'
+  = text_field :user, 'enroll_year'
 
-	= label :user, :advisor, 'Advisor'
-	= text_field :user, 'advisor', value: @user_advisor_name, :class => @check_advisor[:advisor]
+  = label :user, :advisor, 'Advisor'
+  = text_field :user, 'advisor', value: @user_advisor_name, :class => @check_advisor[:advisor]
 
-	= label :user, :co_advisor, 'Co-advisor'
-	= text_field :user, 'co_advisor', value: @user_co_advisor_name, :class => @check_advisor[:co_advisor]
+  = label :user, :co_advisor, 'Co-advisor'
+  = text_field :user, 'co_advisor', value: @user_co_advisor_name, :class => @check_advisor[:co_advisor]
 
-	= label :user, :official_advisor, 'Official advisor'
-	= text_field :user, 'official_advisor', value: @user_official_advisor_name, :class => @check_advisor[:official_advisor]
+  = label :user, :official_advisor, 'Official advisor'
+  = text_field :user, 'official_advisor', value: @user_official_advisor_name, :class => @check_advisor[:official_advisor]
 
-	= submit_tag 'Save'
+  = submit_tag 'Save'
