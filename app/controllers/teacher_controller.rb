@@ -29,6 +29,7 @@ class TeacherController < ApplicationController
      :plan,
      :suggestions,
      :comments,
-     :grade)
+     :grade,
+     :comment_submitted)
   end
 end

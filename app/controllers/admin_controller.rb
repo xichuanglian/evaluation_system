@@ -36,6 +36,7 @@ class AdminController < ApplicationController
 
   def edit
     @check_advisor = Hash.new("")
+    @userid = params[:id]
     @user = User.find params[:id]
     if User.find_by(jobid: @user.advisor) != nil
       @user_advisor_name = User.find_by(jobid: @user.advisor).name
