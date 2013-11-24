@@ -5,8 +5,14 @@
 	= label :user, :name, 'Name'
 	= text_field :user, 'name'
 
-	= label :user, :job, 'Job'
-	= text_field :user, 'job'
+	%tabel
+		%tbody
+			%tr
+				%td= label :user, :job, 'Job'
+				%td= radio_button :user, :job, 'Student'
+				%td= label_tag 'Student'
+				%td= radio_button :user, :job, 'Teacher'
+				%td= label_tag 'Teacher'
 
 	= label :user, :jobid, 'Student ID'
 	= text_field :user, 'jobid'
