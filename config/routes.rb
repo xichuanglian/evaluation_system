@@ -63,6 +63,7 @@ EvaluationSystem::Application.routes.draw do
   get   '/admin/showall' => 'admin#showall', as: :admin_showall
   get   '/admin/new' => 'admin#new', as: :admin_addnew
   post  '/admin/create' => 'admin#create', as: :admin_create
+  get   '/admin/detail/:id' => 'admin#detail', as: :admin_detail
   get   '/admin/edit/:id' => 'admin#edit', as: :admin_edit
   post  '/admin/update/:id' => 'admin#update', as: :admin_update
   get   '/form/:id' => 'evaluation_forms#show', as: :form

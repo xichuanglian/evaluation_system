@@ -5,8 +5,14 @@
 	= label :user, :name, 'Name'
 	= text_field :user, :name
 
-	= label :user, :job, 'Job'
-	= text_field :user, :job
+	%tabel
+		%tbody
+			%tr
+				%td= label :user, :job, 'Job'
+				%td= radio_button :user, :job, 'Student'
+				%td= label_tag 'Student'
+				%td= radio_button :user, :job, 'Teacher'
+				%td= label_tag 'Teacher'
 
 	= label :user, :jobid, 'Student ID'
 	= text_field :user, :jobid
@@ -21,12 +27,12 @@
 	= text_field :user, :enroll_year
 
 	= label :user, :advisor, 'Advisor'
-	= text_field :user, :advisor
+	= text_field :user, :advisor, :class => @check_advisor[:advisor]
 
 	= label :user, :co_advisor, 'Co-advisor'
-	= text_field :user, :co_advisor
+	= text_field :user, :co_advisor, :class => @check_advisor[:co_advisor]
 
 	= label :user, :official_advisor, 'Official advisor'
-	= text_field :user, :official_advisor
+	= text_field :user, :official_advisor, :class => @check_advisor[:official_advisor]
 
 	= submit_tag 'Save'
