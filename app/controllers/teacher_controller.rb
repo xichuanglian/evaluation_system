@@ -10,28 +10,25 @@ class TeacherController < ApplicationController
   end
 
   def update
-    @check_advisor = Hash.new("")
     @user = User.find params[:id]
-    if user_params[:job] == 'Student'
-      if advisor_to_id(user_params) == nil
-        @check_advisor[:advisor] = 'error'
-        render 'edit'
-      elsif co_advisor_to_id(user_params) == nil
-        @check_advisor[:co_advisor] = 'error'
-        render 'edit'
-      elsif official_advisor_to_id(user_params) == nil
-        @check_advisor[:official_advisor] = 'error'
-        render 'edit'
-      else
-        @user = User.update(@user.id, advisor_to_id(co_advisor_to_id(official_advisor_to_id(user_params))))
-        flash[:notice] = 'Successfully saved.'
-        redirect_to admin_showall_path
-      end
-    else
-      @user = User.update(@user.id, user_params)
-      flash[:notice] = 'Successfully saved.'
-      redirect_to admin_showall_path
-    end
+    @form = @user.get_form
+    @form = EvaluationForm.update(@form.id, form_params)
+    flash[:notice] = 'Successfully saved.'
+    redirect_to teacher_show_students_path
   end
-
+  private
+  def form_params
+    params.require(:form).permit(:preliminary_exam,
+     :oral_exam,
+     :thesis_proposal,
+     :education,
+     :classes_taken,
+     :publications,
+     :academic_activities,
+     :research_progress,
+     :plan,
+     :suggestions,
+     :comments,
+     :grade)
+  end
 end
