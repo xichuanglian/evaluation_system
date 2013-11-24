@@ -22,13 +22,13 @@
 			%td= text_field :user, 'enroll_year'
 		%tr
 			%td= label :user, :advisor, 'Advisor'
-			%td= text_field :user, 'advisor'
+			%td= text_field :user, 'advisor', value: @user_advisor_name
 		%tr
 			%td= label :user, :co_advisor, 'Co-advisor'
-			%td= text_field :user, 'co_advisor'
+			%td= text_field :user, 'co_advisor', value: @user_co_advisor_name
 		%tr
 			%td= label :user, :official_advisor, 'Official advisor'
-			%td= text_field :user, 'official_advisor'
+			%td= text_field :user, 'official_advisor', value: @user_official_advisor_name
 
 = link_to 'Edit', admin_edit_path(@user)
 = link_to 'Back', admin_showall_path

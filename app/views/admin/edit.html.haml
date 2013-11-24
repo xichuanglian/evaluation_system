@@ -27,12 +27,12 @@
 	= text_field :user, 'enroll_year'
 
 	= label :user, :advisor, 'Advisor'
-	= text_field :user, 'advisor'
+	= text_field :user, 'advisor', value: @user_advisor_name, :class => @check_advisor[:advisor]
 
 	= label :user, :co_advisor, 'Co-advisor'
-	= text_field :user, 'co_advisor'
+	= text_field :user, 'co_advisor', value: @user_co_advisor_name, :class => @check_advisor[:co_advisor]
 
 	= label :user, :official_advisor, 'Official advisor'
-	= text_field :user, 'official_advisor'
+	= text_field :user, 'official_advisor', value: @user_official_advisor_name, :class => @check_advisor[:official_advisor]
 
 	= submit_tag 'Save'
