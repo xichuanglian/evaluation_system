@@ -70,4 +70,5 @@ EvaluationSystem::Application.routes.draw do
   get   '/teacher/comments/:id' => 'teacher#comments', as: :teacher_comments
   post  '/teacher/update/:id' => 'teacher#update', as: :teacher_update
   get   '/form/:id' => 'evaluation_forms#show', as: :form
+  get   '/form/pdf/:id' => 'evaluation_forms#pdf', as: :form_pdf
 end
