@@ -7,6 +7,7 @@ class AdminController < ApplicationController
 
   def create
     @check_advisor = Hash.new("")
+    @user = User.new user_params
     if user_params[:job] == 'Student'
       if advisor_to_id(user_params) == nil
         @check_advisor[:advisor] = 'error'
@@ -36,14 +37,30 @@ class AdminController < ApplicationController
   def edit
     @check_advisor = Hash.new("")
     @user = User.find params[:id]
-    @user_advisor_name = User.find_by(jobid: @user.advisor).name
-    @user_co_advisor_name = User.find_by(jobid: @user.co_advisor).name
-    @user_official_advisor_name = User.find_by(jobid: @user.official_advisor).name
+    if User.find_by(jobid: @user.advisor) != nil
+      @user_advisor_name = User.find_by(jobid: @user.advisor).name
+    else
+      @user_advisor_name = @user.advisor
+    end
+    if User.find_by(jobid: @user.co_advisor) != nil
+      @user_co_advisor_name = User.find_by(jobid: @user.co_advisor).name
+    else
+      @user_co_advisor_name = @user.co_advisor
+    end
+    if User.find_by(jobid: @user.official_advisor) != nil
+      @user_official_advisor_name = User.find_by(jobid: @user.official_advisor).name
+    else
+      @user_official_advisor_name = @user.official_advisor
+    end
   end
 
   def update
     @check_advisor = Hash.new("")
-    @user = User.find params[:id]
+    @userid = params[:id]
+    @user = User.new user_params
+    @user_advisor_name = @user.advisor
+    @user_co_advisor_name = @user.co_advisor
+    @user_official_advisor_name = @user.official_advisor
     if user_params[:job] == 'Student'
       if advisor_to_id(user_params) == nil
         @check_advisor[:advisor] = 'error'
@@ -55,22 +72,37 @@ class AdminController < ApplicationController
         @check_advisor[:official_advisor] = 'error'
         render 'edit'
       else
-        @user = User.update(@user.id, advisor_to_id(co_advisor_to_id(official_advisor_to_id(user_params))))
+        @user = User.find params[:id]
+        User.update(@user.id, advisor_to_id(co_advisor_to_id(official_advisor_to_id(user_params))))
         flash[:notice] = 'Successfully saved.'
         redirect_to admin_showall_path
       end
     else
-      @user = User.update(@user.id, user_params)
+      @user = User.find params[:id]
+      User.update(@user.id, user_params)
       flash[:notice] = 'Successfully saved.'
       redirect_to admin_showall_path
     end
   end
 
   def detail
+    @check_advisor = Hash.new("")
     @user = User.find params[:id]
-    @user_advisor_name = User.find_by(jobid: @user.advisor).name
-    @user_co_advisor_name = User.find_by(jobid: @user.co_advisor).name
-    @user_official_advisor_name = User.find_by(jobid: @user.official_advisor).name
+    if User.find_by(jobid: @user.advisor) != nil
+      @user_advisor_name = User.find_by(jobid: @user.advisor).name
+    else
+      @user_advisor_name = @user.advisor
+    end
+    if User.find_by(jobid: @user.co_advisor) != nil
+      @user_co_advisor_name = User.find_by(jobid: @user.co_advisor).name
+    else
+      @user_co_advisor_name = @user.co_advisor
+    end
+    if User.find_by(jobid: @user.official_advisor) != nil
+      @user_official_advisor_name = User.find_by(jobid: @user.official_advisor).name
+    else
+      @user_official_advisor_name = @user.official_advisor
+    end
   end
 
   private

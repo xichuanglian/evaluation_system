@@ -21,4 +21,15 @@ class User < ActiveRecord::Base
       return nil
     end
   end
+  def submitted
+    if self.get_form == nil 
+      return 'N'
+    elsif self.job == 'Student' && (self.get_form.form_submitted || self.get_form.form_submitted == "t")
+      return 'Y'
+    elsif self.job == 'Teacher' && (self.get_form.comment_submitted || self.get_form.comment_submitted == "t")
+      return 'Y' 
+    else
+      return 'N'
+    end
+  end
 end
