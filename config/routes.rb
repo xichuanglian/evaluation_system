@@ -66,4 +66,5 @@ EvaluationSystem::Application.routes.draw do
   get   '/admin/edit/:id' => 'admin#edit', as: :admin_edit
   post  '/admin/update/:id' => 'admin#update', as: :admin_update
   get   '/form/:id' => 'evaluation_forms#show', as: :form
+  get   '/form/pdf/:id' => 'evaluation_forms#pdf', as: :form_pdf
 end
