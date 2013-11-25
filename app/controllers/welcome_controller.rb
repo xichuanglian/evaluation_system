@@ -1,6 +1,5 @@
 require "uri"
 require "net/http"
-require "ruby-debug"
 
 class WelcomeController < ApplicationController
   layout "application" 

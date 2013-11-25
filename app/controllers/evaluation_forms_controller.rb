@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 class EvaluationFormsController < ApplicationController
   layout "application"
   def show
