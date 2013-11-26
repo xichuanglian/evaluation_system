@@ -1,7 +1,13 @@
 class CreateEvaluationForms < ActiveRecord::Migration
   def change
     create_table :evaluation_forms do |t|
+      t.string :name
       t.string :student_id
+      t.string :student_type
+      t.string :year
+      t.string :thesis_advisor
+      t.string :co_advisor
+      t.string :official_advisor
       t.string :preliminary_exam
       t.string :oral_exam
       t.string :thesis_proposal
@@ -13,9 +19,12 @@ class CreateEvaluationForms < ActiveRecord::Migration
       t.text :plan
       t.text :suggestions
       t.text :comments
+      t.integer :grade
       t.boolean :form_submitted
       t.boolean :comment_submitted
-      t.integer :grade
+      t.belongs_to :student
+      t.belongs_to :teacher
+      t.belongs_to :semester
       t.timestamps
     end
   end

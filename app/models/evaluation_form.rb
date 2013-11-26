@@ -1,4 +1,8 @@
 class EvaluationForm < ActiveRecord::Base
+  belongs_to :student, :inverse_of => :filled_forms
+  belongs_to :teacher, :inverse_of => :commented_forms
+  belongs_to :semestere
+
   def self.visible_fields
     [:preliminary_exam,
      :oral_exam,
