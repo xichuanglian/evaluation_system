@@ -11,10 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131106115517) do
+ActiveRecord::Schema.define(version: 20131126143121) do
+
+  create_table "academic_activity_infos", force: true do |t|
+    t.date     "date"
+    t.string   "type"
+    t.string   "details"
+    t.string   "remark"
+    t.integer  "student_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "classes_taken_infos", force: true do |t|
+    t.string   "course_number"
+    t.string   "name"
+    t.string   "instructor"
+    t.string   "time"
+    t.integer  "credits"
+    t.integer  "score"
+    t.string   "remark"
+    t.integer  "student_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "education_infos", force: true do |t|
+    t.date     "from"
+    t.date     "to"
+    t.string   "school"
+    t.string   "remark"
+    t.integer  "student_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "evaluation_forms", force: true do |t|
-    t.string   "student_id"
+    t.string   "name"
+    t.integer  "student_id"
+    t.string   "student_type"
+    t.string   "year"
+    t.string   "thesis_advisor"
+    t.string   "co_advisor"
+    t.string   "official_advisor"
     t.string   "preliminary_exam"
     t.string   "oral_exam"
     t.string   "thesis_proposal"
@@ -26,23 +65,72 @@ ActiveRecord::Schema.define(version: 20131106115517) do
     t.text     "plan"
     t.text     "suggestions"
     t.text     "comments"
+    t.integer  "grade"
     t.boolean  "form_submitted"
     t.boolean  "comment_submitted"
-    t.integer  "grade"
+    t.integer  "teacher_id"
+    t.integer  "semester_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
-    t.string "name"
-    t.string "job"
-    t.string "jobid"
-    t.string "email"
-    t.string "student_type"
-    t.string "enroll_year"
-    t.string "advisor"
-    t.string "co_advisor"
-    t.string "official_advisor"
+  create_table "publication_infos", force: true do |t|
+    t.string   "title"
+    t.string   "co_authors"
+    t.string   "type"
+    t.string   "name"
+    t.integer  "year"
+    t.string   "form"
+    t.string   "remark"
+    t.integer  "student_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "semesters", force: true do |t|
+    t.string   "name"
+    t.boolean  "open"
+    t.datetime "deadline"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "student_profiles", force: true do |t|
+    t.string   "preliminary_exam_subject"
+    t.integer  "preliminary_exam_score"
+    t.string   "oral_exam"
+    t.string   "thesis_proposal"
+    t.integer  "student_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "students", force: true do |t|
+    t.string   "name"
+    t.string   "jobid"
+    t.string   "email"
+    t.string   "student_type"
+    t.integer  "advisor_id"
+    t.integer  "co_advisor_id"
+    t.integer  "official_advisor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "system_settings", force: true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "teachers", force: true do |t|
+    t.string   "name"
+    t.string   "jobid"
+    t.string   "email"
+    t.boolean  "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

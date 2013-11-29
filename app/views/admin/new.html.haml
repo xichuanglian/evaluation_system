@@ -1,38 +1,42 @@
-%h1 Add new user
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 Add new user
 
-= form_tag admin_create_path, :method => :post do
+  = form_tag admin_create_path, :method => :post do
 
-  = label :user, :name, 'Name'
-  = text_field :user, :name
+    = label :user, :name, 'Name'
+    = text_field :user, :name
 
-  %tabel
-    %tbody
-      %tr
-        %td= label :user, :job, 'Job'
-        %td= radio_button :user, :job, 'Student'
-        %td= label_tag 'Student'
-        %td= radio_button :user, :job, 'Teacher'
-        %td= label_tag 'Teacher'
+    %tabel
+      %tbody
+        %tr
+          %td= label :user, :job, 'Job'
+          %td= radio_button :user, :job, 'Student'
+          %td= label_tag 'Student'
+          %td= radio_button :user, :job, 'Teacher'
+          %td= label_tag 'Teacher'
 
-  = label :user, :jobid, 'Student ID'
-  = text_field :user, :jobid
+    = label :user, :jobid, 'Student ID'
+    = text_field :user, :jobid
 
-  = label :user, :email, 'Email'
-  = text_field :user, :email
+    = label :user, :email, 'Email'
+    = text_field :user, :email
 
-  = label :user, :student_type, 'PhD/Master'
-  = text_field :user, :student_type
+    = label :user, :student_type, 'PhD/Master'
+    = text_field :user, :student_type
 
-  = label :user, :enroll_year, 'Year enrolled'
-  = text_field :user, :enroll_year
+    = label :user, :enroll_year, 'Year enrolled'
+    = text_field :user, :enroll_year
 
-  = label :user, :advisor, 'Advisor'
-  = text_field :user, :advisor, :class => @check_advisor[:advisor]
+    = label :user, :advisor, 'Advisor'
+    = text_field :user, :advisor, :class => @check_advisor[:advisor]
 
-  = label :user, :co_advisor, 'Co-advisor'
-  = text_field :user, :co_advisor, :class => @check_advisor[:co_advisor]
+    = label :user, :co_advisor, 'Co-advisor'
+    = text_field :user, :co_advisor, :class => @check_advisor[:co_advisor]
 
-  = label :user, :official_advisor, 'Official advisor'
-  = text_field :user, :official_advisor, :class => @check_advisor[:official_advisor]
+    = label :user, :official_advisor, 'Official advisor'
+    = text_field :user, :official_advisor, :class => @check_advisor[:official_advisor]
 
-  = submit_tag 'Save'
+    = submit_tag 'Save'

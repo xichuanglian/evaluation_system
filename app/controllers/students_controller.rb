@@ -1,4 +1,4 @@
-class StudentController < ApplicationController
+class StudentsController < ApplicationController
   layout "application" 
   
   def form

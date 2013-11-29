@@ -19,10 +19,5 @@
             %li= link_to 'Log In', '/'
           %li.last= link_to 'About', '/'
       %div#content-wrap
-        %div#sidebar
-          %div.left-box
-            %p
-              The sidebar is empty now
-        %div#main
-          = yield
+        = yield
       %div#footer

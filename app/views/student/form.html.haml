@@ -13,10 +13,14 @@
         }
     }
 
-- if flash[:error]
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  - if flash[:error]
     = flash[:error]
 
-= form_tag '/student/save', method: 'post', id: 'evaluation_form' do
+  = form_tag '/student/save', method: 'post', id: 'evaluation_form' do
     = label :student, :name
     = text_field :student, :name
 
@@ -89,8 +93,7 @@
     = label_tag "Suggestions to your advisor, your research group and/or the graduate committee."
     = text_area :form, :suggestions, :class => @check_form[:suggestions]
     %p
-        = submit_tag "Save"
+      = submit_tag "Save"
 
-
-%p
+  %p
     = link_to 'Final Submit', '', :onclick => 'final_submit()'

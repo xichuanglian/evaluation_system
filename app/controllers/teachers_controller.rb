@@ -1,4 +1,4 @@
-class TeacherController < ApplicationController
+class TeachersController < ApplicationController
   layout "application" 
   def show_students
     @users = User.all

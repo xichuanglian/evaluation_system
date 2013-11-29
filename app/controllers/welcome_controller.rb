@@ -40,15 +40,31 @@ class WelcomeController < ApplicationController
       redirect_to root_path and return
     else
       jobid = /zjh=(\d+)/.match(response)[1]
-      user = User.find_by(jobid: jobid)
-      session[:user] = user
-      redirect_to user_index(user) and return
+      xm = /:xm=(\w+):/.match(response)[1]
+      email = /:email(.+)\Z/.match(response)[1]
+      student = Student.find_by(jobid: jobid)
+      teacher = Teacher.find_by(jobid: jobid)
+      if student
+        student.name = xm
+        student.email = email
+        session[:user] = student
+        redirect_to user_index(student) and return
+      elsif teacher
+        teacher.name = xm
+        teacher.email = email
+        session[:user] = teacher
+        redirect_to user_index(teacher) and return
+      else
+        flash[:error] = "You are not in our database. " +
+          "Please contact administrator if you have any questions."
+        redirect_to root_path and return
+      end
     end
   end
 
   private
 
   def user_index(user)
-    student_form_path
+    self.send((user.class.to_s + "s_index_path").to_sym)
   end
 end
