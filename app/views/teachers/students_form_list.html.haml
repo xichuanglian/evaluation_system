@@ -1,0 +1,13 @@
+%h1 Student forms list
+%table
+  %thead
+    %tr
+      %th Name
+      %th Education
+
+      
+  %tbody
+    - @list.each do |form|
+      %tr
+        %td= form.name
+        %td= form.education
