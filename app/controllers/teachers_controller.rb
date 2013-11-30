@@ -1,16 +1,16 @@
 class TeachersController < ApplicationController
   layout "application" 
   def show_students
-    @users = User.all
+    @users = (Teacher.find params[:id]).students
   end
 
   def comments
-    @user = User.find params[:id]
+    @user = Teacher.find params[:id]
     @form = @user.get_form
   end
 
   def update
-    @user = User.find params[:id]
+    @user = Teacher.find params[:id]
     @form = @user.get_form
     @form = EvaluationForm.update(@form.id, form_params)
     flash[:notice] = 'Successfully saved.'
@@ -31,5 +31,12 @@ class TeachersController < ApplicationController
      :comments,
      :grade,
      :comment_submitted)
+  end
+  def require_login
+    @user = session[:user] && Teacher.find(session[:user])
+    unless @user && @user.id == params[:id]
+      redirect_to root_path
+    end
+    #@current = Hash.new
   end
 end

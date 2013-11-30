@@ -1,0 +1,24 @@
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 All Students
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Job
+        %th Student ID
+        %th Email
+        %th PhD/Master
+        %th Year enrolled
+        %th Submitted
+        %th
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.name
+          %td= user.jobid
+          %td= user.email
+          %td= user.student_type
+          
