@@ -22,10 +22,7 @@
         %div#sidebar
           %ul.sidemenu
             - [:index, :profile, :forms].each do |page|
-              - if @current[page]
-                %li= page.to_s.capitalize
-              - else
-                %li= link_to page.to_s.capitalize, students_page(page, @user)
+              %li= link_to page.to_s.capitalize, students_page(page, @user)
         %div#main
           = yield
       %div#footer
