@@ -2,7 +2,7 @@
 %html
   %head
     %title Evaluation System
-    = stylesheet_link_tag 'envision_one_column'
+    = stylesheet_link_tag 'Envision'
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
@@ -19,6 +19,13 @@
             %li= link_to 'Log In', '/'
           %li.last= link_to 'About', '/'
       %div#content-wrap
+        %div#sidebar
+          %ul.sidemenu
+            - [:index, :profile, :forms].each do |page|
+              - if @current[page]
+                %li= page.to_s.capitalize
+              - else
+                %li= link_to page.to_s.capitalize, students_page(page, @user)
         %div#main
           = yield
       %div#footer

@@ -58,17 +58,26 @@ EvaluationSystem::Application.routes.draw do
   post  '/login' => 'welcome#login'
   get   '/new_login' => 'welcome#new_login'
   get   '/logout' => 'welcome#logout'
-  get   '/student/form' => 'student#form', as: :student_form
-  post  '/student/save' => 'student#save', as: :student_save
+
+  get   '/students/:id/index' => 'students#index', as: :students_index
+  get   '/students/:id/profile' => 'students#profile', as: :students_profile
+  get   '/students/:id/forms' => 'students#forms', as: :students_forms
+
   get   '/admin/showall' => 'admin#showall', as: :admin_showall
   get   '/admin/new' => 'admin#new', as: :admin_addnew
   post  '/admin/create' => 'admin#create', as: :admin_create
   get   '/admin/detail/:id' => 'admin#detail', as: :admin_detail
   get   '/admin/edit/:id' => 'admin#edit', as: :admin_edit
   post  '/admin/update/:id' => 'admin#update', as: :admin_update
-  get   '/teacher/show_students' => 'teacher#show_students', as: :teacher_show_students
-  get   '/teacher/comments/:id' => 'teacher#comments', as: :teacher_comments
-  post  '/teacher/update/:id' => 'teacher#update', as: :teacher_update
-  get   '/form/:id' => 'evaluation_forms#show', as: :form
-  get   '/form/pdf/:id' => 'evaluation_forms#pdf', as: :form_pdf
+  get   '/teacher/:id/show_students' => 'teacher#show_students', as: :teacher_show_students
+
+  get   '/forms/:id' => 'evaluation_forms#show', as: :forms
+  put   '/forms/:id' => 'evaluation_forms#update'
+  get   '/forms/new' => 'evaluation_forms#new', as: :forms_new
+  post  '/forms/new' => 'evaluation_forms#create'
+  get   '/forms/:id/edit' => 'evaluation_forms#edit', as: :forms_edit
+  get   '/forms/:id/pdf' => 'evaluation_forms#pdf', as: :forms_pdf
+  get   '/forms/:id/comment/edit' => 'evaluation_forms#comment_edit', as: :forms_comment_edit
+  put   '/forms/:id/comment' => 'evaluation_forms#comment_update', as: :forms_comment_update
+
 end

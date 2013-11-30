@@ -2,7 +2,7 @@ require "uri"
 require "net/http"
 
 class WelcomeController < ApplicationController
-  layout "application" 
+  layout "application"
 
   def index
     if session[:user]
@@ -40,19 +40,23 @@ class WelcomeController < ApplicationController
       redirect_to root_path and return
     else
       jobid = /zjh=(\d+)/.match(response)[1]
-      xm = /:xm=(\w+):/.match(response)[1]
+      xm = /:xm=([^:]+):/.match(response)[1]
       email = /:email(.+)\Z/.match(response)[1]
       student = Student.find_by(jobid: jobid)
       teacher = Teacher.find_by(jobid: jobid)
       if student
         student.name = xm
         student.email = email
-        session[:user] = student
+        student.save!
+        session[:user] = student.id
+        session[:type] = :student
         redirect_to user_index(student) and return
       elsif teacher
         teacher.name = xm
         teacher.email = email
-        session[:user] = teacher
+        teacher.save!
+        session[:user] = teacher.id
+        session[:type] = :teacher
         redirect_to user_index(teacher) and return
       else
         flash[:error] = "You are not in our database. " +
@@ -65,6 +69,6 @@ class WelcomeController < ApplicationController
   private
 
   def user_index(user)
-    self.send((user.class.to_s + "s_index_path").to_sym)
+    self.send((user.class.to_s.downcase + "s_index_path").to_sym, user)
   end
 end
