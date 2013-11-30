@@ -6,7 +6,11 @@ class WelcomeController < ApplicationController
 
   def index
     if session[:user]
-      redirect_to user_index(session[:user]) and return
+      if session[:user_type] == :student
+        redirect_to students_index_path(id: session[:user]) and return
+      elsif session[:user_type] == :teacher
+        redirect_to teachers_index_path(id: session[:user]) and return
+      end
     else
       render 'index'
     end
@@ -49,14 +53,14 @@ class WelcomeController < ApplicationController
         student.email = email
         student.save!
         session[:user] = student.id
-        session[:type] = :student
+        session[:user_type] = :student
         redirect_to user_index(student) and return
       elsif teacher
         teacher.name = xm
         teacher.email = email
         teacher.save!
         session[:user] = teacher.id
-        session[:type] = :teacher
+        session[:user_type] = :teacher
         redirect_to user_index(teacher) and return
       else
         flash[:error] = "You are not in our database. " +
