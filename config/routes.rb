@@ -69,7 +69,9 @@ EvaluationSystem::Application.routes.draw do
   get   '/admin/detail/:id' => 'admin#detail', as: :admin_detail
   get   '/admin/edit/:id' => 'admin#edit', as: :admin_edit
   post  '/admin/update/:id' => 'admin#update', as: :admin_update
-  get   '/teacher/:id/show_students' => 'teacher#show_students', as: :teacher_show_students
+
+  get   '/teachers/:id/students_list' => 'teachers#students_list', as: :teachers_students_list
+  get   '/teachers/:id/to_comment_list' => 'teachers#to_comment_list', as: :teachers_to_comment_list
 
   get   '/forms/:id' => 'evaluation_forms#show', as: :forms
   put   '/forms/:id' => 'evaluation_forms#update'
