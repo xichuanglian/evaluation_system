@@ -1,2 +1,59 @@
-This is the profile page for
-= @user.name
+%h1 Profile
+
+%h3 Preliminary Exam
+= form_for @profile, url: student_profiles_preliminary_exam_path(@profile), method: :put do |f|
+  = f.label :subject
+  = f.select :preliminary_exam_subject, StudentProfile.preliminary_exam_subjects
+  = f.label :score
+  = f.number_field :preliminary_exam_score, in: 1..100
+  = f.submit :update
+
+%h3 Oral Exam
+= form_for @profile, url: student_profiles_oral_exam_path(@profile), method: :put do |f|
+  = f.select :oral_exam, StudentProfile.exam_status_list
+  = f.submit :update
+
+= content_for :javascript do
+  :javascript
+    var show_new_education = function(){
+    $('div#new_education').show()
+    }
+    $(document).ready(function(){
+    $('div#new_education').hide()
+    })
+
+%h3 Thesis Proposal
+= form_for @profile, url: student_profiles_thesis_proposal_path(@profile), method: :put do |f|
+  = f.select :thesis_proposal, StudentProfile.exam_status_list
+  = f.submit :update
+
+%h3 Education
+%div{:align => 'center'}
+  %table
+    %tbody
+      %tr
+        %th{:width => '40px'} From
+        %th{:width => '40px'} To
+        %th{:width => '200px'} School
+        %th{:width => '60px'}  Remark
+        %th
+      - @education_infos.each do |ei|
+        %tr
+          %td= ei.from.to_s
+          %td= ei.to.to_s
+          %td= ei.school
+          %td= ei.remark
+          %td= link_to 'Remove', education_infos_delete_path(ei), method: :delete
+%div{:align => 'right'}
+  %button{:onclick => 'show_new_education()'} Add New
+%div#new_education
+  = form_tag student_profiles_education_infos_new_path(@profile), method: :post do
+    = label :education, :from
+    = date_field :education, :from
+    = label :education, :to
+    = date_field :education, :to
+    = label :education, :school
+    = text_field :education, :school
+    = label :education, :remark
+    = text_field :education, :remark
+    = submit_tag :save

@@ -63,6 +63,13 @@ EvaluationSystem::Application.routes.draw do
   get   '/students/:id/profile' => 'students#profile', as: :students_profile
   get   '/students/:id/forms' => 'students#forms', as: :students_forms
 
+  put   '/student_profiles/:id/preliminary_exam' => 'student_profiles#preliminary_exam_update', as: :student_profiles_preliminary_exam
+  put   '/student_profiles/:id/oral_exam' => 'student_profiles#oral_exam_update',as: :student_profiles_oral_exam
+  put   '/student_profiles/:id/thesis_proposal' => 'student_profiles#thesis_proposal_update', as: :student_profiles_thesis_proposal
+
+  post  '/student_profiles/:id/education_infos/new' => 'education_infos#new', as: :student_profiles_education_infos_new
+  delete '/education_infos/:id/delete' => 'education_infos#delete', as: :education_infos_delete
+
   get   '/admin/show_students' => 'admin#show_students', as: :admin_show_students
   get   '/admin/show_teachers' => 'admin#show_teachers', as: :admin_show_teachers
   get   '/admin/new_student' => 'admin#new_student', as: :admin_new_student
