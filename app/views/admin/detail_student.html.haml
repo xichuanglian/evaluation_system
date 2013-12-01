@@ -1,0 +1,32 @@
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 Student Information
+
+  %table
+    %tbody
+      %tr
+        %td= label :student, :name, 'Name'
+        %td= text_field :student, 'name'
+      %tr
+        %td= label :student, :jobid, 'Student ID'
+        %td= text_field :student, 'jobid'
+      %tr
+        %td= label :student, :email, 'Email'
+        %td= text_field :student, 'email'
+      %tr
+        %td= label :student, :student_type, 'PhD/Master'
+        %td= text_field :student, 'student_type'
+      %tr
+        %td= label :student, :advisor, 'Advisor'
+        %td= text_field :student, 'advisor', value: @student_advisor_name
+      %tr
+        %td= label :student, :co_advisor, 'Co-advisor'
+        %td= text_field :student, 'co_advisor', value: @student_co_advisor_name
+      %tr
+        %td= label :student, :official_advisor, 'Official advisor'
+        %td= text_field :student, 'official_advisor', value: @student_official_advisor_name
+
+  = link_to 'Edit', admin_edit_student_path(@student)
+  = link_to 'Back', admin_show_students_path

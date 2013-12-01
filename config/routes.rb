@@ -63,12 +63,17 @@ EvaluationSystem::Application.routes.draw do
   get   '/students/:id/profile' => 'students#profile', as: :students_profile
   get   '/students/:id/forms' => 'students#forms', as: :students_forms
 
-  get   '/admin/showall' => 'admin#showall', as: :admin_showall
-  get   '/admin/new' => 'admin#new', as: :admin_addnew
-  post  '/admin/create' => 'admin#create', as: :admin_create
-  get   '/admin/detail/:id' => 'admin#detail', as: :admin_detail
-  get   '/admin/edit/:id' => 'admin#edit', as: :admin_edit
-  post  '/admin/update/:id' => 'admin#update', as: :admin_update
+  get   '/admin/show_students' => 'admin#show_students', as: :admin_show_students
+  get   '/admin/show_teachers' => 'admin#show_teachers', as: :admin_show_teachers
+  get   '/admin/new_student' => 'admin#new_student', as: :admin_new_student
+  get   '/admin/new_teacher' => 'admin#new_teacher', as: :admin_new_teacher
+  post  '/admin/create_student' => 'admin#create_student', as: :admin_create_student
+  post  '/admin/create_teacher' => 'admin#create_teacher', as: :admin_create_teacher
+  get   '/admin/detail_student/:id' => 'admin#detail_student', as: :admin_detail_student
+  get   '/admin/edit_student/:id' => 'admin#edit_student', as: :admin_edit_student
+  get   '/admin/edit_teacher/:id' => 'admin#edit_teacher', as: :admin_edit_teacher
+  post  '/admin/update_student/:id' => 'admin#update_student', as: :admin_update_student
+  post  '/admin/update_teacher/:id' => 'admin#update_teacher', as: :admin_update_teacher
 
   get   '/teachers/:id/index' => 'teachers#index', as: :teachers_index
   get   '/teachers/:id/students_list' => 'teachers#students_list', as: :teachers_students_list

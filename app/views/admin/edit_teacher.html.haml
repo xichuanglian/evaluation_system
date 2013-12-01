@@ -1,0 +1,18 @@
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 Edit Teacher Information
+
+  = form_tag admin_update_teacher_path(@teacher), :method => :post do
+
+    = label :teacher, :name, 'Name'
+    = text_field :teacher, 'name'
+
+    = label :teacher, :email, 'Email'
+    = text_field :teacher, 'email'
+    
+    = label :teacher, :admin, 'Admin'
+    = check_box :teacher, :admin
+
+    = submit_tag 'Save'

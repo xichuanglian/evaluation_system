@@ -1,0 +1,30 @@
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 Edit Student Information
+
+  = form_tag admin_update_student_path(@student), :method => :post do
+
+    = label :student, :name, 'Name'
+    = text_field :student, 'name'
+
+    = label :student, :jobid, 'Student ID'
+    = text_field :student, 'jobid'
+
+    = label :student, :email, 'Email'
+    = text_field :student, 'email'
+
+    = label :student, :student_type, 'PhD/Master'
+    = text_field :student, 'student_type'
+
+    = label :student, :advisor, 'Advisor'
+    = select :student, :advisor, options_for_select(@teachers.collect{ |u| [u.name, u.id]}, @student_advisor_id)
+
+    = label :student, :co_advisor, 'Co-advisor'
+    = select :student, :co_advisor, options_for_select([['Undecided', '0']] + @teachers.collect{ |u| [u.name, u.id]}, @student_co_advisor_id)
+
+    = label :student, :official_advisor, 'Official advisor'
+    = select :student, :official_advisor, options_for_select([['Undecided', '0']] + @teachers.collect{ |u| [u.name, u.id]}, @student_official_advisor_id)
+
+    = submit_tag 'Save'

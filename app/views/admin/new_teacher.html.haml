@@ -1,0 +1,18 @@
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 Add new teacher
+
+  = form_tag admin_create_teacher_path, :method => :post do
+
+    = label :teacher, :name, 'Name'
+    = text_field :teacher, :name
+
+    = label :teacher, :email, 'Email'
+    = text_field :teacher, :email
+
+    = label :teacher, :admin, 'Admin'
+    = check_box :teacher, :admin
+
+    = submit_tag 'Save'

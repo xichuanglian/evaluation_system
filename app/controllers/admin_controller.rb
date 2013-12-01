@@ -1,148 +1,110 @@
 class AdminController < ApplicationController
   layout "application" 
+  #before_action :require_admin_login
 
-  def new
-    @check_advisor = Hash.new("")
+  def new_student
+
   end
 
-  def create
-    @check_advisor = Hash.new("")
-    @user = User.new user_params
-    if user_params[:job] == 'Student'
-      if advisor_to_id(user_params) == nil
-        @check_advisor[:advisor] = 'error'
-        render 'new'
-      elsif co_advisor_to_id(user_params) == nil
-        @check_advisor[:co_advisor] = 'error'
-        render 'new'
-      elsif official_advisor_to_id(user_params) == nil
-        @check_advisor[:official_advisor] = 'error'
-        render 'new'
-      else
-        @user = User.create!(advisor_to_id(co_advisor_to_id(official_advisor_to_id(user_params))))
-        flash[:notice] = 'Successfully added new user.'
-        redirect_to admin_showall_path
-      end
-    else
-      @user = User.create!(user_params)
-      flash[:notice] = 'Successfully added new user.'
-      redirect_to admin_showall_path
-    end
+  def new_teacher
+
   end
 
-  def showall
-    @users = User.all
+  def create_student
+    @student = Student.create!(student_params)
+    flash[:notice] = 'Successfully added a new student.'
+    redirect_to admin_show_students_path
   end
 
-  def edit
-    @check_advisor = Hash.new("")
-    @userid = params[:id]
-    @user = User.find params[:id]
-    if User.find_by(jobid: @user.advisor) != nil
-      @user_advisor_name = User.find_by(jobid: @user.advisor).name
-    else
-      @user_advisor_name = @user.advisor
-    end
-    if User.find_by(jobid: @user.co_advisor) != nil
-      @user_co_advisor_name = User.find_by(jobid: @user.co_advisor).name
-    else
-      @user_co_advisor_name = @user.co_advisor
-    end
-    if User.find_by(jobid: @user.official_advisor) != nil
-      @user_official_advisor_name = User.find_by(jobid: @user.official_advisor).name
-    else
-      @user_official_advisor_name = @user.official_advisor
-    end
+  def create_teacher
+    @teacher = Teacher.create!(teacher_params)
+    flash[:notice] = 'Successfully added a new teacher.'
+    redirect_to admin_show_teachers_path
   end
 
-  def update
-    @check_advisor = Hash.new("")
-    @userid = params[:id]
-    @user = User.new user_params
-    @user_advisor_name = @user.advisor
-    @user_co_advisor_name = @user.co_advisor
-    @user_official_advisor_name = @user.official_advisor
-    if user_params[:job] == 'Student'
-      if advisor_to_id(user_params) == nil
-        @check_advisor[:advisor] = 'error'
-        render 'edit'
-      elsif co_advisor_to_id(user_params) == nil
-        @check_advisor[:co_advisor] = 'error'
-        render 'edit'
-      elsif official_advisor_to_id(user_params) == nil
-        @check_advisor[:official_advisor] = 'error'
-        render 'edit'
-      else
-        @user = User.find params[:id]
-        User.update(@user.id, advisor_to_id(co_advisor_to_id(official_advisor_to_id(user_params))))
-        flash[:notice] = 'Successfully saved.'
-        redirect_to admin_showall_path
-      end
-    else
-      @user = User.find params[:id]
-      User.update(@user.id, user_params)
-      flash[:notice] = 'Successfully saved.'
-      redirect_to admin_showall_path
-    end
+
+  def show_students
+    @students = Student.all
   end
 
-  def detail
-    @check_advisor = Hash.new("")
-    @user = User.find params[:id]
-    if User.find_by(jobid: @user.advisor) != nil
-      @user_advisor_name = User.find_by(jobid: @user.advisor).name
-    else
-      @user_advisor_name = @user.advisor
+  def show_teachers
+    @teachers = Teacher.all
+  end
+
+  def edit_student
+    @student = Student.find params[:id]
+    if @student.advisor != nil
+      @student_advisor_id = @student.advisor.id
     end
-    if User.find_by(jobid: @user.co_advisor) != nil
-      @user_co_advisor_name = User.find_by(jobid: @user.co_advisor).name
-    else
-      @user_co_advisor_name = @user.co_advisor
+    if @student.co_advisor != nil
+      @student_co_advisor_id = @student.co_advisor.id
     end
-    if User.find_by(jobid: @user.official_advisor) != nil
-      @user_official_advisor_name = User.find_by(jobid: @user.official_advisor).name
+    if @student.official_advisor != nil
+      @student_official_advisor_id = @student.official_advisor.id
+    end
+    @teachers = Teacher.all
+  end
+
+  def edit_teacher
+    @teacher = Teacher.find params[:id]
+  end
+
+  def update_student
+    @student = Student.find params[:id]
+    Student.update(@student.id, student_params.except(:advisor, :co_advisor, :official_advisor))
+    @student.advisor = Teacher.find student_params[:advisor]
+    if student_params[:co_advisor].to_i > 0
+      @student.co_advisor = Teacher.find student_params[:co_advisor]
     else
-      @user_official_advisor_name = @user.official_advisor
+      @student.co_advisor = nil
+    end
+    if student_params[:official_advisor].to_i > 0
+      @student.official_advisor = Teacher.find student_params[:official_advisor]
+    else
+      @student.official_advisor = nil
+    end
+    @student.save
+    flash[:notice] = 'Successfully saved.'
+    redirect_to admin_show_students_path
+  end
+
+  def update_teacher
+    @teacher = Teacher.find params[:id]
+    Teacher.update(@teacher.id, teacher_params)
+    flash[:notice] = 'Successfully saved.'
+    redirect_to admin_show_teachers_path
+  end
+
+
+  def detail_student
+    @student = Student.find params[:id]
+    if @student.advisor != nil
+      @student_advisor_name = @student.advisor.name
+    end
+    if @student.co_advisor != nil
+      @student_co_advisor_name = @student.co_advisor.name
+    end
+    if @student.official_advisor != nil
+      @student_official_advisor_name = @student.official_advisor.name
     end
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:name, :job, :jobid, :email, :student_type,
-      :enroll_year, :advisor, :co_advisor, :official_advisor)
+  def student_params
+    params.require(:student).permit(:name, :jobid, :email, :student_type,
+      :advisor, :co_advisor, :official_advisor)
   end
 
-  def advisor_to_id(user_params)
-    @user_advisor = User.find_by name: user_params[:advisor], job: 'Teacher'
-    if @user_advisor == nil
-      return nil
-    end
-    new_user_params = user_params
-    new_user_params[:advisor] = @user_advisor.jobid
-    new_user_params.permit(:name, :job, :jobid, :email, :student_type,
-      :enroll_year, :advisor, :co_advisor, :official_advisor)
+  def teacher_params
+    params.require(:teacher).permit(:name, :jobid, :email, :admin)
   end
 
-  def co_advisor_to_id(user_params)
-    @user_co_advisor = User.find_by name: user_params[:co_advisor], job: 'Teacher'
-    if @user_co_advisor == nil
-      return nil
+  def require_admin_login
+    @user = session[:user] && Teacher.find(session[:user])
+    unless @user && @user.admin
+      redirect_to root_path
     end
-    new_user_params = user_params
-    new_user_params[:co_advisor] = @user_co_advisor.jobid
-    new_user_params.permit(:name, :job, :jobid, :email, :student_type,
-      :enroll_year, :advisor, :co_advisor, :official_advisor)
   end
 
-  def official_advisor_to_id(user_params)
-    @user_official_advisor = User.find_by name: user_params[:official_advisor], job: 'Teacher'
-    if @user_official_advisor == nil
-      return nil
-    end
-    new_user_params = user_params
-    new_user_params[:official_advisor] = @user_official_advisor.jobid
-    new_user_params.permit(:name, :job, :jobid, :email, :student_type,
-      :enroll_year, :advisor, :co_advisor, :official_advisor)
-  end
 end

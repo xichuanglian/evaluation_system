@@ -1,0 +1,30 @@
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 Add new student
+
+  = form_tag admin_create_student_path, :method => :post do
+
+    = label :student, :name, 'Name'
+    = text_field :student, :name
+
+    = label :student, :jobid, 'Student ID'
+    = text_field :student, :jobid
+
+    = label :student, :email, 'Email'
+    = text_field :student, :email
+
+    = label :student, :student_type, 'PhD/Master'
+    = text_field :student, :student_type
+
+    = label :student, :advisor, 'Advisor'
+    = text_field :student, :advisor, :class => @check_advisor[:advisor]
+
+    = label :student, :co_advisor, 'Co-advisor'
+    = text_field :student, :co_advisor, :class => @check_advisor[:co_advisor]
+
+    = label :student, :official_advisor, 'Official advisor'
+    = text_field :student, :official_advisor, :class => @check_advisor[:official_advisor]
+
+    = submit_tag 'Save'

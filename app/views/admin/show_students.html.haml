@@ -1,0 +1,29 @@
+%div#sidebar
+  %p
+    This is the sidebar
+%div#main
+  %h1 All Students
+
+  - if flash[:notice]
+    = flash[:notice]
+
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Student ID
+        %th More Information
+        %th Submitted
+        %th Commented
+        %th
+    %tbody
+      - @students.each do |student|
+        %tr
+          %td= student.name
+          %td= student.jobid
+          %td= link_to 'Show details', admin_detail_student_path(student)
+          %td
+          %td
+          %td= link_to 'Edit', admin_edit_student_path(student)
+
+  = link_to 'Add new student', admin_new_student_path

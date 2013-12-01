@@ -1,0 +1,22 @@
+%div#main
+  %h1 All Teachers
+
+  - if flash[:notice]
+    = flash[:notice]
+
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Email
+        %th Submitted
+        %th
+    %tbody
+      - @teachers.each do |teacher|
+        %tr
+          %td= teacher.name
+          %td= teacher.email
+          %td
+          %td= link_to 'Edit', admin_edit_teacher_path(teacher)
+
+  = link_to 'Add new teacher', admin_new_teacher_path
