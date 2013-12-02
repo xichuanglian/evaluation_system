@@ -18,9 +18,11 @@
     var show_new_education = function(){
     $('div#new_education').show()
     }
-    $(document).ready(function(){
+    var ready = function(){
     $('div#new_education').hide()
-    })
+    }
+    $(document).ready(ready)
+    $(document).on('page:load', ready)
 
 %h3 Thesis Proposal
 = form_for @profile, url: student_profiles_thesis_proposal_path(@profile), method: :put do |f|
