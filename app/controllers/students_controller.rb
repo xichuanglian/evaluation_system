@@ -13,6 +13,9 @@ class StudentsController < ApplicationController
     @profile = @user.student_profile
     @user.save!
     @education_infos = @profile.education_infos
+    @classes_taken_infos = @profile.classes_taken_infos
+    @publication_infos = @profile.publication_infos
+    @academic_activity_infos = @profile.academic_activity_infos
   end
 
   def forms

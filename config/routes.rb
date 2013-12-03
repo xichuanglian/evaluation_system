@@ -67,8 +67,14 @@ EvaluationSystem::Application.routes.draw do
   put   '/student_profiles/:id/oral_exam' => 'student_profiles#oral_exam_update',as: :student_profiles_oral_exam
   put   '/student_profiles/:id/thesis_proposal' => 'student_profiles#thesis_proposal_update', as: :student_profiles_thesis_proposal
 
-  post  '/student_profiles/:id/education_infos/new' => 'education_infos#new', as: :student_profiles_education_infos_new
+  post  '/student_profiles/:id/education_infos/new' => 'education_infos#new', as: :education_infos_new
   delete '/education_infos/:id/delete' => 'education_infos#delete', as: :education_infos_delete
+  post  '/student_profiles/:id/classes_taken_infos/new' => 'classes_taken_infos#new', as: :classes_taken_infos_new
+  delete '/classes_taken_infos/:id/delete' => 'classes_taken_infos#delete', as: :classes_taken_infos_delete
+  post  '/student_profiles/:id/publication_infos/new' => 'publication_infos#new', as: :publication_infos_new
+  delete '/publication_infos/:id/delete' => 'publication_infos#delete', as: :publication_infos_delete
+  post  '/student_profiles/:id/academic_activity_infos/new' => 'academic_activity_infos#new', as: :academic_activity_infos_new
+  delete '/academic_activity_infos/:id/delete' => 'academic_activity_infos#delete', as: :academic_activity_infos_delete
 
   get   '/admin/show_students' => 'admin#show_students', as: :admin_show_students
   get   '/admin/show_teachers' => 'admin#show_teachers', as: :admin_show_teachers

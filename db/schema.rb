@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126143121) do
+ActiveRecord::Schema.define(version: 20131203132415) do
 
   create_table "academic_activity_infos", force: true do |t|
     t.date     "date"
-    t.string   "type"
+    t.string   "activity_type"
     t.string   "details"
     t.string   "remark"
     t.integer  "student_profile_id"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20131126143121) do
   create_table "publication_infos", force: true do |t|
     t.string   "title"
     t.string   "co_authors"
-    t.string   "type"
+    t.string   "pub_type"
     t.string   "name"
     t.integer  "year"
     t.string   "form"

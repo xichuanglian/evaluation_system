@@ -16,13 +16,17 @@
 = content_for :javascript do
   :javascript
     var show_new_education = function(){
-    $('div#new_education').show()
-    }
-    var ready = function(){
-    $('div#new_education').hide()
-    }
-    $(document).ready(ready)
-    $(document).on('page:load', ready)
+      $('div#new_education').toggle();
+    };
+    var show_new_classes_taken = function(){
+      $('div#new_classes_taken').toggle();
+    };
+    var show_new_publication = function(){
+      $('div#new_publication').toggle();
+    };
+    var show_new_academic_activity = function(){
+      $('div#new_academic_activity').toggle();
+    };
 
 %h3 Thesis Proposal
 = form_for @profile, url: student_profiles_thesis_proposal_path(@profile), method: :put do |f|
@@ -30,7 +34,7 @@
   = f.submit :update
 
 %h3 Education
-%div{:align => 'center'}
+%div
   %table
     %tbody
       %tr
@@ -48,8 +52,8 @@
           %td= link_to 'Remove', education_infos_delete_path(ei), method: :delete
 %div{:align => 'right'}
   %button{:onclick => 'show_new_education()'} Add New
-%div#new_education
-  = form_tag student_profiles_education_infos_new_path(@profile), method: :post do
+%div#new_education{:style => 'display:none'}
+  = form_tag education_infos_new_path(@profile), method: :post do
     = label :education, :from
     = date_field :education, :from
     = label :education, :to
@@ -58,4 +62,121 @@
     = text_field :education, :school
     = label :education, :remark
     = text_field :education, :remark
+    = submit_tag :save
+
+%h3 Classes Taken So Far
+%div
+  %table
+    %tobdy
+      %tr
+        %th{:width => '40px'} Course Number
+        %th{:width => '60px'} Course Name
+        %th{:width => '30px'} Instructor
+        %th{:width => '30px'} Time
+        %th{:width => '15px'} Credits
+        %th{:width => '15px'} Score
+        %th{:width => '40px'} Remark
+        %th
+      - @classes_taken_infos.each do |e|
+        %tr
+          %td= e.course_number
+          %td= e.name
+          %td= e.instructor
+          %td= e.time
+          %td= e.credits
+          %td= e.score
+          %td= e.remark
+          %td= link_to 'Remove', classes_taken_infos_delete_path(e), method: :delete
+%div{:align => 'right'}
+  %button{:onclick => 'show_new_classes_taken()'} Add New
+%div#new_classes_taken{:style => 'display:none'}
+  = form_tag classes_taken_infos_new_path(@profile), method: :post do
+    = label :classes_taken, :course_number
+    = text_field :classes_taken, :course_number
+    = label :classes_taken, :name
+    = text_field :classes_taken, :name
+    = label :classes_taken, :instructor
+    = text_field :classes_taken, :instructor
+    = label :classes_taken, :time
+    = text_field :classes_taken, :time
+    = label :classes_taken, :credits
+    = number_field :classes_taken, :credits
+    = label :classes_taken, :score
+    = number_field :classes_taken, :score
+    = label :classes_taken, :remark
+    = text_field :classes_taken, :remark
+    = submit_tag :save
+
+%h3 Publications
+%div
+  %table
+    %tobdy
+      %tr
+        %th{:width => '80px'} Title
+        %th{:width => '60px'} Co-authors
+        %th{:width => '30px'} Type
+        %th{:width => '30px'} Name
+        %th{:width => '15px'} Year
+        %th{:width => '15px'} Form
+        %th{:width => '40px'} Remark
+        %th
+      - @publication_infos.each do |e|
+        %tr
+          %td= e.title
+          %td= e.co_authors
+          %td= e.pub_type
+          %td= e.name
+          %td= e.year
+          %td= e.form
+          %td= e.remark
+          %td= link_to 'Remove', publication_infos_delete_path(e), method: :delete
+%div{:align => 'right'}
+  %button{:onclick => 'show_new_publication()'} Add New
+%div#new_publication{:style => 'display:none'}
+  = form_tag publication_infos_new_path(@profile), method: :post do
+    = label :publication, :title
+    = text_field :publication, :title
+    = label :publication, :co_authors
+    = text_field :publication, :co_authors
+    = label :publication, :pub_type
+    = select :publication, :pub_type, PublicationInfo.type_list
+    = label :publication, :name
+    = text_field :publication, :name
+    = label :publication, :year
+    = number_field :publication, :year
+    = label :publication, :form
+    = select :publication, :form, PublicationInfo.form_list
+    = label :publication, :remark
+    = text_field :publication, :remark
+    = submit_tag :save
+
+%h3 Other Academic Activities
+%div
+  %table
+    %tobdy
+      %tr
+        %th{:width => '40px'} Date
+        %th{:width => '60px'} Type
+        %th{:width => '200px'} Details
+        %th{:width => '80px'} Remark
+        %th
+      - @academic_activity_infos.each do |e|
+        %tr
+          %td= e.date.to_s
+          %td= e.activity_type
+          %td= e.details
+          %td= e.remark
+          %td= link_to 'Remove', academic_activity_infos_delete_path(e), method: :delete
+%div{:align => 'right'}
+  %button{:onclick => 'show_new_academic_activity()'} Add New
+%div#new_academic_activity{:style => 'display:none'}
+  = form_tag academic_activity_infos_new_path(@profile), method: :post do
+    = label :academic_activity, :date
+    = date_field :academic_activity, :date
+    = label :academic_activity, :activity_type
+    = select :academic_activity, :activity_type, AcademicActivityInfo.type_list
+    = label :academic_activity, :details
+    = text_field :academic_activity, :details
+    = label :academic_activity, :remark
+    = text_field :academic_activity, :remark
     = submit_tag :save
