@@ -16,36 +16,20 @@ class WelcomeController < ApplicationController
     end
   end
 
-  def login
-    user = User.verify(params[:username], params[:password])
-    if user
-      session[:user] = user
-      redirect_to user_index(user) and return
-    else
-      flash[:error] = "Invalid username or passowrd!"
-      redirect_to root_path and return
-    end
-  end
-
   def logout
     session.clear
     redirect_to root_path
   end
 
   def new_login
-    ticket = params[:ticket]
-    ip = request.remote_ip.gsub(/[.]/, '_')
-    if Settings.ip
-        ip = Settings.ip
-    end
-    response = Net::HTTP.get(URI.parse(Settings.ticket_url + "#{ticket}/#{ip}"))
-    if response == "" || /code=1/.match(response)
+    user_info = get_user_info()
+    if user_info == "" || /code=1/.match(user_info)
       flash[:notice] = "Login Failed"
       redirect_to root_path and return
     else
-      jobid = /zjh=(\d+)/.match(response)[1]
-      xm = /:xm=([^:]+):/.match(response)[1]
-      email = /:email(.+)\Z/.match(response)[1]
+      jobid = /zjh=(\d+)/.match(user_info)[1]
+      xm = /:xm=([^:]+):/.match(user_info)[1]
+      email = /:email=(.+)\Z/.match(user_info)[1]
       student = Student.find_by(jobid: jobid)
       teacher = Teacher.find_by(jobid: jobid)
       if student
@@ -74,5 +58,14 @@ class WelcomeController < ApplicationController
 
   def user_index(user)
     self.send((user.class.to_s.downcase + "s_index_path").to_sym, user)
+  end
+
+  def get_user_info
+    ticket = params[:ticket]
+    ip = request.remote_ip.gsub(/[.]/, '_')
+    if Settings.ip
+        ip = Settings.ip
+    end
+    Net::HTTP.get(URI.parse(Settings.ticket_url + "#{ticket}/#{ip}"))
   end
 end

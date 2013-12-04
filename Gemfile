@@ -44,9 +44,10 @@ gem 'rails_config'
 
 group :development, :test do
   gem 'debugger'
+  gem 'factory_girl_rails', "~> 4.0"
+  gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'simplecov', :require => false
