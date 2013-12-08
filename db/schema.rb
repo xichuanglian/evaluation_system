@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20131203132415) do
 
   create_table "evaluation_forms", force: true do |t|
     t.string   "name"
-    t.integer  "student_id"
+    t.string   "student_jobid"
     t.string   "student_type"
     t.string   "year"
     t.string   "thesis_advisor"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20131203132415) do
     t.integer  "grade"
     t.boolean  "form_submitted"
     t.boolean  "comment_submitted"
+    t.integer  "student_id"
     t.integer  "teacher_id"
     t.integer  "semester_id"
     t.datetime "created_at"

@@ -4,6 +4,7 @@
     %tr
       %th Name
       %th Education
+      %th Comments
 
       
   %tbody
@@ -11,3 +12,4 @@
       %tr
         %td= form.name
         %td= form.education
+        %td= link_to 'Add Comments', teachers_comments_path(:id => @user.id, :form_id => form.id)

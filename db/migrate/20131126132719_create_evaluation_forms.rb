@@ -2,7 +2,7 @@ class CreateEvaluationForms < ActiveRecord::Migration
   def change
     create_table :evaluation_forms do |t|
       t.string :name
-      t.string :student_id
+      t.string :student_jobid
       t.string :student_type
       t.string :year
       t.string :thesis_advisor

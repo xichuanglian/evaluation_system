@@ -6,14 +6,17 @@ class TeachersController < ApplicationController
   end
   def sendmail
     student = Student.find params[:student]
-    recipient = student.email #"yangchengych_ok@126.com"
+    recipient = student.email
     Emailer.remind(recipient).deliver
     #return if request.xhr?
-    redirect_to teachers_index_path
+    redirect_to teachers_students_list_path
     #render :text => 'Message sent successfully'
   end 
   def students_list
     @users = (Teacher.find params[:id]).students
+  end
+  def view_form
+    @form = EvaluationForm.find params[:form_id]
   end
   def to_comment_list
     @list = []
@@ -48,16 +51,15 @@ class TeachersController < ApplicationController
   end
 
   def comments
-    @user = Teacher.find params[:id]
-    @form = @user.get_form
+    @form = EvaluationForm.find params[:form_id]
   end
 
   def update
-    @user = Teacher.find params[:id]
-    @form = @user.get_form
-    @form = EvaluationForm.update(@form.id, form_params)
+    @form = EvaluationForm.find params[:form_id]
+    #@form.comments = 
+    @form.update(permitted_params)
     flash[:notice] = 'Successfully saved.'
-    redirect_to teacher_show_students_path
+    redirect_to teachers_to_comment_list_path
   end
 
   private
@@ -68,5 +70,9 @@ class TeachersController < ApplicationController
       redirect_to root_path
     end
     #@current = Hash.new
+  end
+
+  def permitted_params
+    params.require(:comment).permit(:comments, :grade, :comment_submitted)
   end
 end

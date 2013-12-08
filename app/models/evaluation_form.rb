@@ -1,10 +1,17 @@
 class EvaluationForm < ActiveRecord::Base
   belongs_to :student, :inverse_of => :filled_forms
   belongs_to :teacher, :inverse_of => :commented_forms
-  belongs_to :semestere
+  belongs_to :semester
 
   def self.visible_fields
-    [:preliminary_exam,
+    [:name,
+     :student_jobid,
+     :student_type,
+     :year,
+     :thesis_advisor,
+     :co_advisor,
+     :official_advisor,
+     :preliminary_exam,
      :oral_exam,
      :thesis_proposal,
      :education,

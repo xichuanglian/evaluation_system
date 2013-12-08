@@ -19,6 +19,11 @@ class StudentsController < ApplicationController
   end
 
   def forms
+    @forms = @user.filled_forms
+  end
+
+  def view_form
+    @form = EvaluationForm.find params[:form]
   end
 
   private

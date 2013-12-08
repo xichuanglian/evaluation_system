@@ -1,34 +1,11 @@
-%div#sidebar
-  %p
-    This is the sidebar
-%div#main
-  %h1 Add Comments
-  %table
-    %tbody
-      %tr
-        %td{width: 100}
-          Student ID
-        %td
-          #{@user.jobid}
-      %tr
-        %td
-          Student Name
-        %td
-          #{@user.name}
-      - EvaluationForm.required_fields.each do |field|
-        %tr
-          %td
-            = field_name(field)
-          %td
-            - split_lines(@form.send(field)) do |line|
-              = line
-              %br
-  = form_tag teacher_update_path(@user), :method => :post do
+= @form.id
 
-    = label :form, :comments, 'Comments'
-    = text_area :form, 'comments'
-    = label :form, :grade, 'Grade'
-    = text_field :form, 'grade'
-    = hidden_field :form, :comment_submitted, value: true
-    %br
-    = submit_tag 'Submit'
+= render "evaluation_forms/show", locals: {form: @form}
+= form_tag teachers_update_path(:form_id => @form.id, :id=>@user.id), :method => :post do
+  = label :comment, :comments, 'Comments'
+  = text_area :comment, 'comments'
+  = label :comment, :grade, 'Grade'
+  = text_field :comment, 'grade'
+  = hidden_field :comment, :comment_submitted, value: true
+  %br
+  = submit_tag 'Submit'

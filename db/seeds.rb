@@ -15,3 +15,12 @@
   student.advisor = teacher
   student.save!
 end
+
+# Create 10 semesters for test
+5.times do |i|
+  semester_autumn = Semester.where(name: "201#{i}-201#{i+1} Autumn").first_or_initialize
+  semester_spring = Semester.where(name: "201#{i}-201#{i+1} Spring").first_or_initialize
+  semester_autumn.open = true
+  semester_autumn.save!
+  semester_spring.save!
+end
