@@ -10,6 +10,11 @@ class Student < ActiveRecord::Base
   has_many :academic_activity_infos, :through => :student_profile
 
   def year
-    1
+    enrolled_year = self.jobid.slice(0,4).to_i
+    result = Time.now.year - enrolled_year
+    if Time.now.month > 8
+      result += 1
+    end
+    return result
   end
 end

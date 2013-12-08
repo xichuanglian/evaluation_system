@@ -15,25 +15,25 @@ class StudentProfile < ActiveRecord::Base
 
   def preliminary_exam_to_string
     if self.preliminary_exam_subject != "N/A"
-      "#{self.preliminary_exam_subject} / #{self.preiminary_exam_score}"
+      "#{self.preliminary_exam_subject} / #{self.preliminary_exam_score}"
     else
       "N/A"
     end
   end
 
-  def education_infos_to_string
-    "education_infos\neducation infos"
+  def get_education_infos
+    self.education_infos.map{|info| info.to_s}.join("\n")
   end
 
-  def classes_taken_infos_to_string
-    "classes_taken_infos\nclasses taken infos"
+  def get_classes_taken_infos
+    self.classes_taken_infos.map{|info| info.to_s}.join("\n")
   end
 
-  def publication_infos_to_string
-    "publication_infos\npublication infos"
+  def get_publication_infos
+    self.publication_infos.map{|info| info.to_s}.join("\n")
   end
 
-  def academic_activity_infos_to_string
-    "academic_activity_infos\nacademic activity infos"
+  def get_academic_activity_infos
+    self.academic_activity_infos.map{|info| info.to_s}.join("\n")
   end
 end

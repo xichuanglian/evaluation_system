@@ -5,4 +5,8 @@ class AcademicActivityInfo < ActiveRecord::Base
     ["TA", "Internships", "Presentations", "Conferences Talks",
      "Seminars Talks"]
   end
+
+  def to_s
+    "#{self.date}/#{self.activity_type}/#{self.details}/#{self.remark}"
+  end
 end
