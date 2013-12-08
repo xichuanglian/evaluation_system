@@ -8,4 +8,8 @@ class Student < ActiveRecord::Base
   has_many :classes_taken_infos, :through => :student_profile
   has_many :publication_infos, :through => :student_profile
   has_many :academic_activity_infos, :through => :student_profile
+
+  def year
+    1
+  end
 end

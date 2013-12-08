@@ -1,2 +1,16 @@
-This is the forms page for
-= @user.name
+%table
+  %tbody
+    %tr
+      %th Semester
+      %th Submitted
+      %th Commented
+      %th
+
+    - @forms.each do |f|
+      %tr
+        %td= f.semester.name
+        %td= f.form_submitted
+        %td= f.comment_submitted
+        %td= link_to 'View Form', students_view_form_path(@user, :form => f.id)
+
+= link_to "New Form", forms_new_path
