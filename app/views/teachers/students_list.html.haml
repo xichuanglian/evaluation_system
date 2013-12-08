@@ -3,12 +3,11 @@
   %thead
     %tr
       %th Name
-      %th Job
       %th Student ID
       %th Email
       %th PhD/Master
-      %th Year enrolled
-      %th Submitted
+      %th Send Email
+
       
   %tbody
     - @users.each do |user|
@@ -17,3 +16,4 @@
         %td= user.jobid
         %td= user.email
         %td= user.student_type
+        %td= link_to 'Send', teachers_sendmail_path(:student => user.id)

@@ -90,6 +90,7 @@ EvaluationSystem::Application.routes.draw do
 
   get   '/teachers/:id/index' => 'teachers#index', as: :teachers_index
   get   '/teachers/:id/students_list' => 'teachers#students_list', as: :teachers_students_list
+  get   '/teachers/:id/send_mail_to_student' => 'teachers#sendmail', as: :teachers_sendmail
   get   '/teachers/:id/to_comment_list' => 'teachers#to_comment_list', as: :teachers_to_comment_list
   get   '/teachers/:id/commented_list' => 'teachers#commented_list', as: :teachers_commented_list
   get   '/teachers/:id/students_form_list' => 'teachers#students_form_list', as: :teachers_students_form_list

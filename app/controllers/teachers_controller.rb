@@ -3,6 +3,14 @@ class TeachersController < ApplicationController
   before_action :require_login
 
   def index
+  end
+  def sendmail
+    student = Student.find params[:student]
+    recipient = student.email #"yangchengych_ok@126.com"
+    Emailer.remind(recipient).deliver
+    #return if request.xhr?
+    redirect_to teachers_index_path
+    #render :text => 'Message sent successfully'
   end 
   def students_list
     @users = (Teacher.find params[:id]).students
