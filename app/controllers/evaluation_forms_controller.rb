@@ -1,5 +1,3 @@
-require 'ruby-debug'
-
 class EvaluationFormsController < ApplicationController
   def new
     student = Student.find(session[:user])
@@ -13,7 +11,6 @@ class EvaluationFormsController < ApplicationController
 
   def create
     @form = EvaluationForm.create! permitted_params
-    debugger
     student = Student.find(session[:user])
     @form.semester = Semester.find params[:form][:semester]
     @form.student = student
@@ -58,10 +55,10 @@ class EvaluationFormsController < ApplicationController
     @form.preliminary_exam = profile.preliminary_exam_to_string
     @form.oral_exam = profile.oral_exam
     @form.thesis_proposal = profile.thesis_proposal
-    @form.education = profile.education_infos_to_string
-    @form.classes_taken = profile.classes_taken_infos_to_string
-    @form.publications = profile.publication_infos_to_string
-    @form.academic_activities = profile.academic_activity_infos_to_string
+    @form.education = profile.get_education_infos
+    @form.classes_taken = profile.get_classes_taken_infos
+    @form.publications = profile.get_publication_infos
+    @form.academic_activities = profile.get_academic_activity_infos
   end
 
   def permitted_params

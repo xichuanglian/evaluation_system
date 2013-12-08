@@ -2,7 +2,7 @@
 %div#main
   = form_tag forms_new_path, method: :post do
     = label :form, :semester
-    = select :form, :semester, Semester.all.map{|i| [i.name, i.id]}
+    = select :form, :semester, Semester.where(open: true).map{|i| [i.name, i.id]}
     = label :form, :name
     = text_field :form, :name, readonly: true
     = label :form, :student_jobid

@@ -7,10 +7,12 @@ class StudentProfilesController < ApplicationController
   end
 
   def oral_exam_update
+    @profile.update params.require(:student_profile).permit(:oral_exam)
     redirect_to students_profile_path(@user)
   end
 
   def thesis_proposal_update
+    @profile.update params.require(:student_profile).permit(:thesis_proposal)
     redirect_to students_profile_path(@user)
   end
 
