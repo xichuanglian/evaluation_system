@@ -19,6 +19,13 @@ class EvaluationFormsController < ApplicationController
     redirect_to students_forms_path(student)
   end
 
+  def update
+    @form = EvaluationForm.find params[:id]
+    student = Student.find(session[:user])
+    @form.update_attributes!(permitted_params)
+    redirect_to students_forms_path(student)
+  end
+
   def pdf
     @form = EvaluationForm.find params[:id]
     @student = User.find_by(jobid: @form.student_id)

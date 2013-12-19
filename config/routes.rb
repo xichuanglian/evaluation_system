@@ -63,6 +63,7 @@ EvaluationSystem::Application.routes.draw do
   get   '/students/:id/profile' => 'students#profile', as: :students_profile
   get   '/students/:id/forms' => 'students#forms', as: :students_forms
   get   '/students/:id/view_form' => 'students#view_form', as: :students_view_form
+  get   '/students/:id/edit_form' => 'students#edit_form', as: :students_edit_form
 
   put   '/student_profiles/:id/preliminary_exam' => 'student_profiles#preliminary_exam_update', as: :student_profiles_preliminary_exam
   put   '/student_profiles/:id/oral_exam' => 'student_profiles#oral_exam_update',as: :student_profiles_oral_exam
@@ -99,11 +100,9 @@ EvaluationSystem::Application.routes.draw do
   post  '/teachers/:id/update/:form_id' => 'teachers#update', as: :teachers_update
   get   '/teachers/:id/view/:form_id' => 'teachers#view_form', as: :teachers_view_form
 
-  get   '/form/:id' => 'evaluation_forms#show', as: :forms
-  put   '/form/:id' => 'evaluation_forms#update'
-  get   '/forms/new' => 'evaluation_forms#new', as: :forms_new
+  get   '/forms/new' => 'evaluation_forms#new', as: :evaluation_forms_new
   post  '/forms/new' => 'evaluation_forms#create'
-  get   '/form/:id/edit' => 'evaluation_forms#edit', as: :forms_edit
+  post  '/form/:id/' => 'evaluation_forms#update', as: :evaluation_forms_update
   get   '/form/:id/pdf' => 'evaluation_forms#pdf', as: :forms_pdf
   get   '/form/:id/comment/edit' => 'evaluation_forms#comment_edit', as: :forms_comment_edit
   put   '/form/:id/comment' => 'evaluation_forms#comment_update', as: :forms_comment_update

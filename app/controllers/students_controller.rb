@@ -26,6 +26,10 @@ class StudentsController < ApplicationController
     @form = EvaluationForm.find params[:form]
   end
 
+  def edit_form
+    @form = EvaluationForm.find params[:form]
+  end
+
   private
 
   def require_login

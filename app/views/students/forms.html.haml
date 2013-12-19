@@ -11,6 +11,9 @@
         %td= f.semester.name
         %td= f.form_submitted
         %td= f.comment_submitted
-        %td= link_to 'View Form', students_view_form_path(@user, :form => f.id)
+        - if f.form_submitted
+          %td= link_to 'View', students_view_form_path(@user, :form => f.id)
+        - else
+          %td= link_to 'Edit', students_edit_form_path(@user, :form => f.id)
 
 = link_to "New Form", forms_new_path
