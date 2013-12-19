@@ -13,21 +13,6 @@
   = f.select :oral_exam, StudentProfile.exam_status_list
   = f.submit :update
 
-= content_for :javascript do
-  :javascript
-    var show_new_education = function(){
-      $('div#new_education').toggle();
-    };
-    var show_new_classes_taken = function(){
-      $('div#new_classes_taken').toggle();
-    };
-    var show_new_publication = function(){
-      $('div#new_publication').toggle();
-    };
-    var show_new_academic_activity = function(){
-      $('div#new_academic_activity').toggle();
-    };
-
 %h3 Thesis Proposal
 = form_for @profile, url: student_profiles_thesis_proposal_path(@profile), method: :put do |f|
   = f.select :thesis_proposal, StudentProfile.exam_status_list
@@ -51,8 +36,8 @@
           %td= ei.remark
           %td= link_to 'Remove', education_infos_delete_path(ei), method: :delete
 %div{:align => 'right'}
-  %button{:onclick => 'show_new_education()'} Add New
-%div#new_education{:style => 'display:none'}
+  %button#new_education_button Add New
+%div#new_education
   = form_tag education_infos_new_path(@profile), method: :post do
     = label :education, :from
     = date_field :education, :from
@@ -88,8 +73,8 @@
           %td= e.remark
           %td= link_to 'Remove', classes_taken_infos_delete_path(e), method: :delete
 %div{:align => 'right'}
-  %button{:onclick => 'show_new_classes_taken()'} Add New
-%div#new_classes_taken{:style => 'display:none'}
+  %button#new_classes_taken_button Add New
+%div#new_classes_taken
   = form_tag classes_taken_infos_new_path(@profile), method: :post do
     = label :classes_taken, :course_number
     = text_field :classes_taken, :course_number
@@ -131,8 +116,8 @@
           %td= e.remark
           %td= link_to 'Remove', publication_infos_delete_path(e), method: :delete
 %div{:align => 'right'}
-  %button{:onclick => 'show_new_publication()'} Add New
-%div#new_publication{:style => 'display:none'}
+  %button#new_publication_button Add New
+%div#new_publication
   = form_tag publication_infos_new_path(@profile), method: :post do
     = label :publication, :title
     = text_field :publication, :title
@@ -168,8 +153,8 @@
           %td= e.remark
           %td= link_to 'Remove', academic_activity_infos_delete_path(e), method: :delete
 %div{:align => 'right'}
-  %button{:onclick => 'show_new_academic_activity()'} Add New
-%div#new_academic_activity{:style => 'display:none'}
+  %button#new_academic_activity_button Add New
+%div#new_academic_activity
   = form_tag academic_activity_infos_new_path(@profile), method: :post do
     = label :academic_activity, :date
     = date_field :academic_activity, :date
