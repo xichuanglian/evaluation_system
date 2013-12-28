@@ -15,6 +15,24 @@ class AdminController < ApplicationController
 
   end
 
+  def sendmail_student
+    student = Student.find params[:student]
+    recipient = student.email
+    Emailer.remind(recipient).deliver
+    #return if request.xhr?
+    redirect_to admin_show_students_path
+    #render :text => 'Message sent successfully'
+  end
+
+  def sendmail_teacher
+    teacher = Teacher.find params[:teacher]
+    recipient = teacher.email
+    Emailer.remind(recipient).deliver
+    #return if request.xhr?
+    redirect_to admin_show_teachers_path
+    #render :text => 'Message sent successfully'
+  end
+
   def create_student
     @student = Student.create!(student_params)
     flash[:notice] = 'Successfully added a new student.'
