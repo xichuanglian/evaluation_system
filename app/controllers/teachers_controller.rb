@@ -3,6 +3,7 @@ class TeachersController < ApplicationController
   before_action :require_login
 
   def index
+    @usage = Usage.find_by(:name=>'TeacherUsage')
   end
   def sendmail
     student = Student.find params[:student]
