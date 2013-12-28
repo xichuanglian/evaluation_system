@@ -25,6 +25,12 @@ class ClassesTakenInfosController < ApplicationController
   private
 
   def permitted_params
-    params.require(:classes_taken).permit(:course_number, :name, :instructor, :time, :credits, :score, :remark)
+    params.require(:classes_taken).permit(:course_number,
+                                          :name,
+                                          :instructor,
+                                          :time,
+                                          :credits,
+                                          :score,
+                                          :remark)
   end
 end
