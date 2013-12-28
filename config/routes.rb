@@ -78,6 +78,7 @@ EvaluationSystem::Application.routes.draw do
   post  '/student_profiles/:id/academic_activity_infos/new' => 'academic_activity_infos#new', as: :academic_activity_infos_new
   delete '/academic_activity_infos/:id/delete' => 'academic_activity_infos#delete', as: :academic_activity_infos_delete
 
+  get   '/admin/index' => 'admin#index', as: :admin_index
   get   '/admin/show_students' => 'admin#show_students', as: :admin_show_students
   get   '/admin/show_teachers' => 'admin#show_teachers', as: :admin_show_teachers
   get   '/admin/new_student' => 'admin#new_student', as: :admin_new_student
@@ -99,7 +100,7 @@ EvaluationSystem::Application.routes.draw do
   get   '/teachers/:id/comments/:form_id' => 'teachers#comments', as: :teachers_comments
   post  '/teachers/:id/update/:form_id' => 'teachers#update', as: :teachers_update
   get   '/teachers/:id/view/:form_id' => 'teachers#view_form', as: :teachers_view_form
-  get   '/admin/show_students' => 'teachers#change_to_admin', as: :teachers_change_to_admin
+  get   '/admin/index' => 'teachers#change_to_admin', as: :teachers_change_to_admin
 
   get   '/forms/new' => 'evaluation_forms#new', as: :evaluation_forms_new
   post  '/forms/new' => 'evaluation_forms#create'
