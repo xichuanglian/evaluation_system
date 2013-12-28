@@ -90,6 +90,8 @@ EvaluationSystem::Application.routes.draw do
   get   '/admin/edit_teacher/:id' => 'admin#edit_teacher', as: :admin_edit_teacher
   post  '/admin/update_student/:id' => 'admin#update_student', as: :admin_update_student
   post  '/admin/update_teacher/:id' => 'admin#update_teacher', as: :admin_update_teacher
+  get   '/admin/send_mail_to_student' => 'admin#sendmail_student', as: :admin_sendmail_student
+  get   '/admin/send_mail_to_teacher' => 'admin#sendmail_teacher', as: :admin_sendmail_teacher
 
   get   '/teachers/:id/index' => 'teachers#index', as: :teachers_index
   get   '/teachers/:id/students_list' => 'teachers#students_list', as: :teachers_students_list

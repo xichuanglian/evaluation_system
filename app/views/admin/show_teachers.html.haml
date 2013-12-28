@@ -11,6 +11,7 @@
         %th Email
         %th Submitted
         %th
+        %th Send Email
     %tbody
       - @teachers.each do |teacher|
         %tr
@@ -18,5 +19,6 @@
           %td= teacher.email
           %td
           %td= link_to 'Edit', admin_edit_teacher_path(teacher)
+          %td= link_to 'Send', admin_sendmail_teacher_path(:teacher => teacher.id)
 
   = link_to 'Add new teacher', admin_new_teacher_path

@@ -13,6 +13,7 @@
         %th Submitted
         %th Commented
         %th
+        %th Send Email
     %tbody
       - @students.each do |student|
         %tr
@@ -22,5 +23,6 @@
           %td
           %td
           %td= link_to 'Edit', admin_edit_student_path(student)
+          %td= link_to 'Send', admin_sendmail_student_path(:student => student.id)
 
   = link_to 'Add new student', admin_new_student_path
