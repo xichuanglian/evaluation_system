@@ -29,6 +29,8 @@ class TeachersController < ApplicationController
       end
     end
   end
+  def change_to_admin
+  end
   def commented_list
     @list = []
     @templist = @user.commented_forms

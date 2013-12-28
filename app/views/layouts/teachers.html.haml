@@ -13,6 +13,9 @@
         %h2#slogan Evaluation Form for Graduate Students
       %div#menu
         %ul
+          - @this_user = session[:user] && Teacher.find(session[:user])
+          - if @this_user.admin
+            %li= link_to 'Change to admin', admin_show_students_path
           - if session[:user]
             %li= link_to 'Log Out', '/logout'
           - else

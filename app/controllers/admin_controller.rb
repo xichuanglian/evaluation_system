@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   layout "application" 
-  #before_action :require_admin_login
+  before_action :require_admin_login
 
   def new_student
 
