@@ -3,6 +3,7 @@ class StudentsController < ApplicationController
   before_action :require_login
 
   def index
+    @usage = Usage.find_by(:name=>'StudentUsage')
   end
 
   def profile

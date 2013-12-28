@@ -78,6 +78,7 @@ EvaluationSystem::Application.routes.draw do
   post  '/student_profiles/:id/academic_activity_infos/new' => 'academic_activity_infos#new', as: :academic_activity_infos_new
   delete '/academic_activity_infos/:id/delete' => 'academic_activity_infos#delete', as: :academic_activity_infos_delete
 
+  get   '/admin/index' => 'admin#index', as: :admin_index
   get   '/admin/show_students' => 'admin#show_students', as: :admin_show_students
   get   '/admin/show_teachers' => 'admin#show_teachers', as: :admin_show_teachers
   get   '/admin/new_student' => 'admin#new_student', as: :admin_new_student

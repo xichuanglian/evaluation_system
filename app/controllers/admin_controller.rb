@@ -1,6 +1,10 @@
 class AdminController < ApplicationController
-  layout "application" 
+  layout "admin" 
   #before_action :require_admin_login
+
+  def index
+    @usage = Usage.find_by(:name=>'AdminUsage')
+  end
 
   def new_student
 

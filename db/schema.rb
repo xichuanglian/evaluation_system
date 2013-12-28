@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131203132415) do
+ActiveRecord::Schema.define(version: 20131228060351) do
 
   create_table "academic_activity_infos", force: true do |t|
     t.date     "date"
@@ -130,6 +130,13 @@ ActiveRecord::Schema.define(version: 20131203132415) do
     t.string   "jobid"
     t.string   "email"
     t.boolean  "admin"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "usages", force: true do |t|
+    t.string   "name"
+    t.string   "entry"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

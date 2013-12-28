@@ -24,3 +24,8 @@ end
   semester_autumn.save!
   semester_spring.save!
 end
+
+# Create 3 Usages
+Usage.create(name: 'StudentUsage', entry: 'This is the usage for students~~~')
+Usage.create(name: 'TeacherUsage', entry: 'This is the usage for teachers~~~')
+Usage.create(name: 'AdminUsage', entry: 'This is the usage for admin~~~')
