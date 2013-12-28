@@ -13,6 +13,7 @@
         %h2#slogan Evaluation Form for Graduate Students
       %div#menu
         %ul
+          %li= link_to 'Back to Teacher', teachers_index_path(:id => @user_id)
           - if session[:user]
             %li= link_to 'Log Out', '/logout'
           - else

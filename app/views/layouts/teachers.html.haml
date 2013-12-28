@@ -13,6 +13,8 @@
         %h2#slogan Evaluation Form for Graduate Students
       %div#menu
         %ul
+          - if @is_admin
+            %li= link_to 'Change to admin', admin_index_path
           - if session[:user]
             %li= link_to 'Log Out', '/logout'
           - else
