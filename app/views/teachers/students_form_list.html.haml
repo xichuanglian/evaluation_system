@@ -3,12 +3,12 @@
   %thead
     %tr
       %th Name
-      %th Education
+      %th Student ID
       %th View
 
   %tbody
     - @list.each do |form|
       %tr
         %td= form.name
-        %td= form.education
+        %td= form.student_jobid
         %td= link_to 'View', teachers_view_form_path(:id => @user.id, :form_id => form.id)

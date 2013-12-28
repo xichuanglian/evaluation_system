@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
-  layout "application" 
+  layout "admin" 
   before_action :require_admin_login
+
 
   def index
     @usage = Usage.find_by(:name=>'AdminUsage')
@@ -107,8 +108,9 @@ class AdminController < ApplicationController
   def require_admin_login
     @user = session[:user] && Teacher.find(session[:user])
     unless @user && @user.admin
-      redirect_to root_path
+      redirect_to root_path and return
     end
+    @user_id = @user.id
   end
 
 end

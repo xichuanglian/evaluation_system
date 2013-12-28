@@ -100,7 +100,6 @@ EvaluationSystem::Application.routes.draw do
   get   '/teachers/:id/comments/:form_id' => 'teachers#comments', as: :teachers_comments
   post  '/teachers/:id/update/:form_id' => 'teachers#update', as: :teachers_update
   get   '/teachers/:id/view/:form_id' => 'teachers#view_form', as: :teachers_view_form
-  get   '/admin/index' => 'teachers#change_to_admin', as: :teachers_change_to_admin
 
   get   '/forms/new' => 'evaluation_forms#new', as: :evaluation_forms_new
   post  '/forms/new' => 'evaluation_forms#create'

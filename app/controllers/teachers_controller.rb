@@ -30,8 +30,7 @@ class TeachersController < ApplicationController
       end
     end
   end
-  def change_to_admin
-  end
+
   def commented_list
     @list = []
     @templist = @user.commented_forms
@@ -70,7 +69,12 @@ class TeachersController < ApplicationController
   def require_login
     @user = session[:user] && Teacher.find(session[:user])
     unless @user && @user.id == params[:id].to_i
-      redirect_to root_path
+      redirect_to root_path and return
+    end
+    if @user.admin
+      @is_admin = true
+    else
+      @is_admin = false
     end
     #@current = Hash.new
   end
