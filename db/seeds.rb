@@ -16,6 +16,10 @@
   student.save!
 end
 
+admin = Teacher.where(jobid: "2010020001").first_or_initialize
+admin.admin = true
+admin.save!
+
 # Create 10 semesters for test
 5.times do |i|
   semester_autumn = Semester.where(name: "201#{i}-201#{i+1} Autumn").first_or_initialize
